@@ -1,6 +1,6 @@
 {
   "name": "myfreelancesite",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "My personal site by Anton Gribenkov antoniodecasper@gmail.com",
   "main": "index.js",
   "scripts": {
