@@ -1,0 +1,25 @@
+.text-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotate(100deg);
+}
+
+.text-circle.isActive {
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.text-circle__letter {
+  position: absolute;
+  top: 0;
+  font-size: 22px;
+  width: 20px;
+  display: none;
+  text-align: center;
+  transform-origin: bottom center;
+}
+
+.text-circle.isActive .text-circle__letter {
+  display: inline-block;
+}

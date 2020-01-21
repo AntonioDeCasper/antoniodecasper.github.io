@@ -1,0 +1,27 @@
+.side-menu {
+  height: 100%;
+  position: fixed;
+  right: -300px;
+  width: 300px;
+  background-color: #ffffff;
+  z-index: 1000;
+  transition: transform ease-in-out 0.3s;
+}
+
+.side-menu.isActive {
+  box-shadow: -10px 0px 20px rgba(0, 0, 0, 0.15);
+}
+
+.side-menu-overlay {
+  position: absolute;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.side-menu-overlay:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,46 @@
+.btn-inline {
+  font-family: 'Roboto-Medium', sans-serif;
+  transition: all linear 0.3s;
+  display: block;
+  text-decoration: none;
+}
+
+.btn-inline:hover {
+  cursor: pointer;
+}
+
+.btn-inline__text {
+  position: relative;
+  padding: 4px 0 6px;
+}
+
+.btn-inline__top-line,
+.btn-inline__bottom-line {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  left: 0;
+  background: #2196f3;
+  transform: scaleX(0);
+  transition: transform ease-in-out 0.2s;
+}
+
+.btn-inline__bottom-line {
+  bottom: 0;
+}
+
+.btn-inline__top-line {
+  top: 0;
+}
+
+.isActive .btn-inline__bottom-line,
+.btn-inline__text:hover .btn-inline__bottom-line {
+  transform: scaleX(1);
+}
+
+/*MODIFICATIONS*/
+.btn-inline_active_double.isActive .btn-inline__top-line,
+.btn-inline_active_double .btn-inline__text:hover .btn-inline__top-line {
+  transform: scaleX(1);
+}

@@ -1,0 +1,11 @@
+.validation-wrapper {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.validation-wrapper__error-text {
+  position: absolute;
+  bottom: 0;
+  color: #e74c3c;
+  font-size: 14px;
+}

@@ -1,0 +1,112 @@
+.button {
+  display: inline-block;
+  background-color: transparent;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: transform linear 0.1s, color linear 0.2s, font-size linear 0.1s,
+    border-color linear 0.3s, background-color linear 0.3s;
+  user-select: none;
+  position: relative;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  overflow: hidden;
+  outline: none;
+}
+
+.button:before {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  transition: width ease-in-out 0.3s;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: #e53935;
+  border-color: #e53935;
+}
+
+.button:active {
+  transform: scale(0.9);
+}
+
+.button__text {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+}
+
+.button__icon {
+  position: absolute;
+  z-index: 1;
+}
+
+.button__circle {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+  transform: translate(-50%, -50%);
+}
+
+.button:hover .button__circle {
+  background-color: #fff;
+}
+
+/*ANIMATIONS*/
+.button_animation_position-aware:hover .button__circle {
+  width: 600px;
+  height: 600px;
+}
+
+.button_animation_swipe-left:hover:before {
+  width: 100%;
+}
+
+/*THEMES*/
+.button_theme_sun {
+  background-color: #fbc02d;
+  color: #ffffff;
+  letter-spacing: 1px;
+  border: none;
+}
+
+.button_theme_sun-inverted {
+  background-color: transparent;
+  border: 2px solid #fbc02d;
+  color: #fbc02d;
+  letter-spacing: 1px;
+}
+
+.button_theme_sun .button__circle,
+.button_theme_sun:hover .button__circle,
+.button_theme_sun:before {
+  background-color: #e65100;
+}
+
+.button_theme_sun-inverted .button__circle,
+.button_theme_sun-inverted:hover .button__circle,
+.button_theme_sun-inverted:before {
+  background-color: #fbc02d;
+}
+
+.button_theme_sun-inverted:hover {
+  border-color: #fbc02d;
+}
+
+.button_theme_sun-inverted:hover,
+.button_theme_sun:hover {
+  color: #fff;
+}
+
+.button_theme_tag {
+  padding: 5px 10px;
+  font-size: 14px;
+}

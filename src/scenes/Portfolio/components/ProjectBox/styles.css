@@ -1,0 +1,119 @@
+.project-box {
+  width: 33.333%;
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.project-box.zoomOut {
+  transition: width linear 0.5s;
+  width: 0;
+  padding: 0 !important;
+}
+
+.project-box__container {
+  width: 100%;
+  position: relative;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.15);
+  transition: all ease-in-out 0.3s;
+  overflow: hidden;
+}
+
+.project-box__container:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 15px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.project-box__content {
+  position: relative;
+  padding-top: 58%;
+  width: 100%;
+}
+
+.project-box__content:before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.55) inset;
+  z-index: 1;
+}
+
+.project-box__content img {
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.project-box__details {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  left: 0;
+  z-index: 2;
+  background-color: transparent;
+  transition: background-color ease-in-out 0.2s;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: -10000px;
+}
+
+.project-box__container:hover .project-box__details {
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.project-box__details-tags {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.project-box__details-tag {
+  position: relative;
+  padding: 5px;
+  line-height: 0px;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.project-box__details-tag > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.project-box__details-tag + .project-box__details-tag {
+  margin-left: 10px;
+}
+
+.project-box__details-more {
+  position: relative;
+  padding: 8px 48px 8px 18px;
+  background-color: #3c80b9;
+  text-transform: uppercase;
+  font-size: 14px;
+  animation-delay: 0.2s;
+}
+
+.project-box__details-more-btn {
+  position: absolute;
+  right: 0px;
+  background-color: #ffffff;
+  height: 100%;
+  width: 30px;
+  top: 0;
+}
+
+.project-box__details-more-btn svg {
+  position: absolute;
+  top: 50%;
+  margin-top: -14px;
+  right: 1px;
+}

@@ -1,0 +1,7 @@
+.page {
+  display: flex;
+  position: relative;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+}

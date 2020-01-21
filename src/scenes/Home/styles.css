@@ -1,0 +1,36 @@
+.page-home__hello-box {
+  width: 500px;
+}
+
+.page-home__animated-text {
+  margin-left: 15px;
+}
+
+.page-home__btn-container {
+  margin-top: 20px;
+}
+
+.page-home__about-btn {
+  margin-right: 30px;
+}
+
+.page-home__about-btn,
+.page-home__portfolio-btn {
+  padding: 20px 36px 20px 48px;
+  font-size: 16px;
+}
+
+.page-home__portfolio-btn {
+  padding: 22px 36px 22px 54px;
+}
+
+.page-home__about-icon,
+.page-home__portfolio-icon {
+  left: 20px;
+  top: 50%;
+  margin-top: -9px;
+}
+
+.page-home__portfolio-icon {
+  margin-top: -11px;
+}

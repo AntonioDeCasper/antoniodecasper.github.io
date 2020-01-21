@@ -1,0 +1,46 @@
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  position: fixed;
+  z-index: 999;
+}
+
+.navigation__item {
+  display: flex;
+}
+
+.navigation__links {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: 40px;
+}
+
+.navigation__links-last {
+  margin-right: 0;
+}
+
+.navigation__lng-btn {
+  text-transform: uppercase;
+  font-size: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/*ANIMATIONS*/
+.navigation_delay_1 {
+  animation-delay: 0.2s;
+}
+.navigation_delay_2 {
+  animation-delay: 0.4s;
+}
+.navigation_delay_3 {
+  animation-delay: 0.6s;
+}
+.navigation_delay_4 {
+  animation-delay: 0.8s;
+}
+.navigation_delay_5 {
+  animation-delay: 1s;
+}

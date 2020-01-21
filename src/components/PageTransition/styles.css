@@ -1,0 +1,20 @@
+.page-transition {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  right: -100px;
+  border-radius: 50%;
+  transition: transform linear 0.5s;
+  z-index: -1;
+}
+
+.switch-page-enter-active + .page-transition {
+  transform: scale(25);
+  z-index: 10;
+}
+
+.switch-page-exit + .page-transition,
+.switch-page-enter-done + .page-transition {
+  opacity: 0;
+}

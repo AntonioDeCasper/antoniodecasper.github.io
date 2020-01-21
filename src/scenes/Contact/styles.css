@@ -1,0 +1,75 @@
+.page-contact {
+}
+
+.page-contact__container {
+  padding-top: 20px;
+  /* border-bottom: 4px solid; */
+  display: block;
+  text-align: center;
+  height: auto;
+}
+
+.page-content__second-header {
+  padding: 20px 0;
+}
+
+.page-contact__contacts-form {
+  display: flex;
+  padding-top: 40px;
+}
+
+.page-contact__contacts-block {
+  display: flex;
+  flex: 2;
+  justify-content: center;
+}
+
+.page-contact__contacts-wrapper {
+}
+
+.page-contact__contact-paragraph {
+  margin-bottom: 10px;
+}
+
+.page-contact__contact-text {
+  margin-top: 5px;
+}
+
+.page-contact__contacts-icon {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.page-contact__social-links-block {
+  margin-top: 5px;
+}
+
+.page-contact__social-link {
+  transition: color linear 0.3s;
+}
+
+.page-contact__social-link + .page-contact__social-link {
+  margin-left: 10px;
+}
+
+.page-contact__form-block {
+  flex: 3;
+}
+
+.page-contact__form-paragraph {
+  display: flex;
+}
+
+.page-contact__form-name {
+  flex: 1;
+  margin-right: 10px;
+}
+.page-contact__form-email {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.page-contact__submit {
+  padding: 15px 30px;
+  margin-top: 20px;
+}

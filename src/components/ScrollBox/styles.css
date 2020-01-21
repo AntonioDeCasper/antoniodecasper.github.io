@@ -1,0 +1,29 @@
+.scroll-box {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.scroll-box__container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+}
+
+.scroll-box__inner-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.scroll-box__inner-container:after {
+  position: relative;
+  content: '';
+  height: 60px;
+  width: 100%;
+  display: block;
+  background: transparent;
+}
