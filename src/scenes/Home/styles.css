@@ -1,3 +1,9 @@
+.page-home {
+  background: url('../../assets/images/homePageBackground.png') no-repeat center
+    center;
+  background-size: cover;
+}
+
 .page-home__hello-box {
   width: 500px;
 }

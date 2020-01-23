@@ -120,10 +120,13 @@ const HomePage = React.memo<Props>(({className}) => {
               </div>
 
               <div className="animated bounceInRight text-common paragraph paragraph_lh_large">
-                I&apos;m a Freelance UI/UX Designer and Developer based in
-                London, England. I strives to build immersive and beautiful web
-                applications through carefully crafted code and user-centric
-                design.
+                Proident sint tempor exercitation sunt ad nulla et commodo in
+                voluptate. Nulla tempor consectetur magna aute. Cillum nisi anim
+                eiusmod excepteur non ad aliquip Lorem id deserunt pariatur.
+                Minim do velit irure anim eiusmod eu excepteur labore dolor nisi
+                id et reprehenderit proident. Magna pariatur amet irure
+                voluptate aliquip aliqua officia laborum voluptate. Consequat
+                aliqua sunt ut aute nulla eiusmod proident ad.
               </div>
 
               <div className="page-home__btn-container">
