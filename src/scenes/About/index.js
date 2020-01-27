@@ -1,5 +1,5 @@
 //@flow
-import React, {memo, useEffect, useState, useContext} from 'react';
+import React, {memo, useEffect, useState, useContext, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
 import {ThemeContext} from '../../store';
 
@@ -16,30 +16,6 @@ type Props = {
   className?: string,
 };
 
-const PERSONAL_INFO = [
-  {index: 0, name: 'First name:', value: 'Anton'},
-  {index: 1, name: 'Last name:', value: 'Gribenkov'},
-  {index: 2, name: 'Birthdate:', value: '25 july 1986'},
-  {index: 3, name: 'Nationality:', value: 'Russian'},
-  {index: 4, name: 'Address:', value: 'Barnaul, Altai Krai, Russia'},
-  {index: 5, name: 'Languages:', value: 'Russian (native), English'},
-  {index: 6, name: 'Email:', value: 'antoniodecasper@gmail.com'},
-  {index: 7, name: 'Telegram:', value: '@AntonGribenkov'},
-  {
-    index: 8,
-    name: 'Skype:',
-    value: (
-      <a
-        className="page-about__skype-link"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://join.skype.com/invite/cCV5tEfG0DKw">
-        Anton Gribenkov
-      </a>
-    ),
-  },
-];
-
 const AboutPage = memo<Props>(({className}) => {
   const classNames = ['page-content page-about', className].join(' ');
   const {t} = useTranslation('about');
@@ -49,6 +25,33 @@ const AboutPage = memo<Props>(({className}) => {
   const {pageTransition} = useContext(ThemeContext).variables;
 
   const [isRenderState, setIsRenderState] = useState<boolean>(false);
+
+  const PERSONAL_INFO = useMemo(
+    () => [
+      {index: 0, name: t('FirstName'), value: t('FirstName')},
+      {index: 1, name: t('LastName'), value: t('LastNameVal')},
+      {index: 2, name: t('Birthdate'), value: t('BirthdateVal')},
+      {index: 3, name: t('Nationality'), value: t('NationalityVal')},
+      {index: 4, name: t('Address'), value: t('AddressVal')},
+      {index: 5, name: t('Languages'), value: t('LanguagesVal')},
+      {index: 6, name: t('Email'), value: t('EmailVal')},
+      {index: 7, name: t('Telegram'), value: t('TelegramVal')},
+      {
+        index: 8,
+        name: t('Skype'),
+        value: (
+          <a
+            className="page-about__skype-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://join.skype.com/invite/cCV5tEfG0DKw">
+            {t('SkypeVal')}
+          </a>
+        ),
+      },
+    ],
+    [t],
+  );
 
   const styles = {
     pageAbout: {
@@ -83,7 +86,7 @@ const AboutPage = memo<Props>(({className}) => {
           style={{borderBottomColor: secondaryColor}}
           className="page-content__container page-about__container">
           <div className="header header_type_h1 header_tt_uppercase header_fw_bold animated fadeIn">
-            <span style={{color: secondaryColor}}>Me</span>
+            <span style={{color: secondaryColor}}>{t('Me')}</span>
             <span>.</span>
           </div>
 
@@ -93,9 +96,7 @@ const AboutPage = memo<Props>(({className}) => {
                 background: `linear-gradient( ${primaryColor} 70%, transparent)`,
               }}
               className="text-common page-about__paragraph-text animated bounceInRight">
-              <span style={{color: secondaryColor}}>
-                What can i say... I like to code.
-              </span>
+              <span style={{color: secondaryColor}}>{t('header')}</span>
             </div>
           </div>
 
@@ -145,7 +146,7 @@ const AboutPage = memo<Props>(({className}) => {
                   background: `linear-gradient(to top, ${primaryColor} 70%, transparent)`,
                 }}
                 className="animated bounceInRight page-about__next-header header header_fw_bold header_type_h3 header_tt_uppercase">
-                My skills
+                {t('Skills')}
               </div>
 
               <div className="animated-arrows">

@@ -7,7 +7,6 @@ import React, {
   useContext,
 } from 'react';
 import {Switch, Route, useLocation, Redirect} from 'react-router-dom';
-import {useTranslation} from 'react-i18next';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {ThemeContext} from '../store';
 
@@ -25,7 +24,6 @@ import './styles.css';
 import '../libs/normalize.css/normalize.css';
 
 const App = () => {
-  const {t, i18n} = useTranslation();
   let location = useLocation();
   const {pageTransition} = useContext(ThemeContext).variables;
   const {colors} = useContext(ThemeContext);

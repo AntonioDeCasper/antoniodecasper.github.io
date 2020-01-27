@@ -1,7 +1,21 @@
 .page-home {
+  position: relative;
+  flex: 1;
+}
+
+.page-home:before {
+  position: absolute;
+  content: '';
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   background: url('../../assets/images/homePageBackground.png') no-repeat center
     center;
   background-size: cover;
+  animation-name: customBackgroundAnimation;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
 }
 
 .page-home__hello-box {
@@ -39,4 +53,19 @@
 
 .page-home__portfolio-icon {
   margin-top: -11px;
+}
+
+/* ANIMATIONS*/
+@keyframes customBackgroundAnimation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04) translate(-15px, 8px);
+  }
+
+  100% {
+    transform: scale(1) translate(0px 0px);
+  }
 }

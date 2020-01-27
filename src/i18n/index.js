@@ -3,40 +3,7 @@ import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// the translations
-// (tip move them in a JSON file and import them)
-const resources = {
-  en: {
-    home: {
-      Welcome: 'Welcome to my Home Page',
-      Goodbye: 'Goodbye',
-    },
-    about: {
-      Welcome: 'This page is about me',
-    },
-    routes: {
-      Home: 'Home',
-      About: 'About',
-      Portfolio: 'Portfolio',
-      Contact: 'Contact',
-    },
-  },
-  ru: {
-    home: {
-      Welcome: 'Добро пожаловать на мою домашнюю страницу',
-      Goodbye: 'До свидания',
-    },
-    about: {
-      Welcome: 'Эта страница расскажет обо мне',
-    },
-    routes: {
-      Home: 'Главная',
-      About: 'Обо мне',
-      Portfolio: 'Портфолио',
-      Contact: 'Контакты',
-    },
-  },
-};
+import {resources} from './resources';
 
 const detectionOptions = {
   // order and from where user language should be detected

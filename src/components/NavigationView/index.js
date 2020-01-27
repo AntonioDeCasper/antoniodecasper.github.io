@@ -1,6 +1,8 @@
 //@flow
 import React, {memo, useState, useEffect, useContext} from 'react';
 import {ThemeContext} from '../../store';
+import {useTranslation} from 'react-i18next';
+import capitalize from 'lodash/capitalize';
 
 //Import COMPONENTS
 import {TextCircle} from '../';
@@ -29,6 +31,7 @@ const NavigationView = memo<Props>(({className, route}) => {
     className,
   ].join(' ');
   const {colors} = useContext(ThemeContext);
+  const {t} = useTranslation('routes');
 
   const [
     configurationState,
@@ -154,7 +157,11 @@ const NavigationView = memo<Props>(({className, route}) => {
           }}
           startAnimation={route}
           text={
-            route ? (route.split('/')[1] ? route.split('/')[1] : 'Home') : ''
+            route
+              ? route.split('/')[1]
+                ? t(capitalize(route.split('/')[1]))
+                : t('Home')
+              : ''
           }
           className="navigation-view__circle-text"
         />

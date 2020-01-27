@@ -20,7 +20,7 @@ import './styles.css';
 type Props = {|onLinkHover: (?string) => void, location: Object|};
 
 const Navigation = memo<Props>(({onLinkHover, location}) => {
-  const {t, i18n} = useTranslation();
+  const {t, i18n} = useTranslation('routes');
   const {colors} = useContext(ThemeContext);
   const colorFieldByLocation =
     colors[

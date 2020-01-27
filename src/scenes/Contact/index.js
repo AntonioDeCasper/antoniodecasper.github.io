@@ -1,11 +1,15 @@
 //@flow
 import React, {useState, useEffect, useContext} from 'react';
 import {Formik} from 'formik';
+import {useTranslation} from 'react-i18next';
 import {ThemeContext} from '../../store';
 
 //Import COMPONENTS
 import {Link, Button} from '../../components';
 import {InputWithValidation} from '../../hoc';
+
+//Import HOOKS
+import {useContactInfo} from './hooks';
 
 //Import ICONS
 import {FaFacebookSquare, FaLinkedin} from 'react-icons/fa';
@@ -14,7 +18,7 @@ import {FaFacebookSquare, FaLinkedin} from 'react-icons/fa';
 import {ContactSchema} from '../../validation';
 
 //Import CONSTANTS
-import {CONTACTS_INFO, INPUT_DEFAULT_STYLES} from './constants';
+import {INPUT_DEFAULT_STYLES} from './constants';
 
 //Import STYLES
 import './styles.css';
@@ -25,10 +29,12 @@ type Props = {
 
 const ContactPage = ({className}: Props) => {
   const classNames = ['page-content page-contact', className].join(' ');
+  const {t} = useTranslation('contact');
   const {primaryColor, secondaryColor, textColor} = useContext(
     ThemeContext,
   ).colors.contact;
   const {pageTransition} = useContext(ThemeContext).variables;
+  const {info} = useContactInfo();
 
   const [isRenderState, setIsRenderState] = useState<boolean>(false);
 
@@ -80,9 +86,7 @@ const ContactPage = ({className}: Props) => {
                 background: `linear-gradient( ${primaryColor} 70%, transparent)`,
               }}
               className="text-common text-common_tt_uppercase text-backline__text-box animated bounceInRight">
-              <span style={{color: secondaryColor}}>
-                I&apos;m always open to a discussion of partnership.
-              </span>
+              <span style={{color: secondaryColor}}>{t('Header')}</span>
             </div>
             <div className="text-backline__line"></div>
           </div>
@@ -90,7 +94,7 @@ const ContactPage = ({className}: Props) => {
           <div className="page-contact__contacts-form">
             <div className="page-contact__contacts-block">
               <div className="page-contact__contacts-wrapper">
-                {CONTACTS_INFO.map((info, index) => (
+                {info.map((info, index) => (
                   <div
                     key={info.index}
                     className="paragraph paragraph_align_left page-contact__contact-paragraph">
@@ -114,7 +118,7 @@ const ContactPage = ({className}: Props) => {
                   <div
                     style={{animationDelay: `600ms`}}
                     className="text-common text-common_line animated flipInX">
-                    Social
+                    {t('Social')}
                   </div>
 
                   <div className="text-common page-contact__social-links-block">
@@ -151,9 +155,7 @@ const ContactPage = ({className}: Props) => {
             <div className="page-contact__form-block">
               <div className="paragraph paragraph_align_left">
                 <div className="text-common animated fadeIn">
-                  If you have any suggestion, project or even you want just say
-                  &quot;Hello&quot; to me... please fill out the form below and
-                  I will try to reply you shortly.
+                  {t('ContactText')}
                 </div>
               </div>
 
@@ -169,7 +171,7 @@ const ContactPage = ({className}: Props) => {
                         onBlur={props.handleBlur}
                         value={props.values.firstName}
                         name="firstName"
-                        placeholder="First name"
+                        placeholder={t('FirstName')}
                         styles={INPUT_DEFAULT_STYLES}
                         className="page-contact__form-name animated flipInX"
                         errors={props.errors.firstName}
@@ -182,7 +184,7 @@ const ContactPage = ({className}: Props) => {
                         onBlur={props.handleBlur}
                         value={props.values.email}
                         name="email"
-                        placeholder="Email"
+                        placeholder={t('Email')}
                         styles={INPUT_DEFAULT_STYLES}
                         className="page-contact__form-email animated flipInX"
                         errors={props.errors.email}
@@ -197,7 +199,7 @@ const ContactPage = ({className}: Props) => {
                         onBlur={props.handleBlur}
                         value={props.values.message}
                         name="message"
-                        placeholder="Message"
+                        placeholder={t('Message')}
                         styles={INPUT_DEFAULT_STYLES}
                         errors={props.errors.message}
                         touched={props.touched.message}
@@ -208,10 +210,11 @@ const ContactPage = ({className}: Props) => {
                     <div className="paragraph paragraph_align_left">
                       <Button
                         type="submit"
-                        text="Send message"
-                        className="animated flipInX delay-1s page-contact__submit"
+                        text={t('SubmitText')}
+                        className="animated flipInX page-contact__submit"
                         animationType="swipe-left"
                         theme="sun"
+                        style={{animationDelay: '800ms'}}
                       />
                     </div>
                   </form>

@@ -19,10 +19,9 @@
   width: 100%;
 }
 
-.scroll-box__inner-container:after {
+.scroll-box__empty-container {
   position: relative;
-  content: '';
-  height: 60px;
+  height: 40px;
   width: 100%;
   display: block;
   background: transparent;

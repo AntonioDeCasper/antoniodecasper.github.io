@@ -1,10 +1,5 @@
 //@flow
 import React, {useEffect, useState, useRef} from 'react';
-import ReactDOMServer from 'react-dom/server';
-
-//Import ICONS
-import marker from '../../assets/images/myMarker.svg';
-import {FaMapMarkerAlt} from 'react-icons/fa';
 
 // Import STYLES
 import './styles.css';
@@ -43,6 +38,12 @@ const GoogleMap = ({className}: Props) => {
         backgroundColor: 'none',
       });
 
+    fetch(
+      'https://maps.googleapis.com/maps/api/js?v=weekly&key=${GOOGLE_API_KEY}',
+    ).then(response => {
+      console.log('Google response: ', response);
+    });
+
     // Check if we already append google script at the document body
     if (
       documentScriptsList.filter(
@@ -68,9 +69,6 @@ const GoogleMap = ({className}: Props) => {
       return new window.google.maps.Marker({
         position: LOCATION,
         map: googleMapState,
-        // icon: ReactDOMServer.renderToString(
-        //   <img className="hello" src={marker} />,
-        // ),
       });
     };
 

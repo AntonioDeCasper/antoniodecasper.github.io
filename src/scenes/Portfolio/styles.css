@@ -18,53 +18,11 @@
   text-align: center;
 }
 
-.page-portfolio__menu {
-  text-align: center;
-  padding: 30px 40px 60px;
-  height: 100%;
-  position: relative;
-}
-
-.page-portfolio__menu-content {
-  height: 100%;
-  overflow: hidden;
-}
-.page-portfolio__slider {
-  padding-top: 25px;
-  position: relative;
-}
-
-.page-portfolio__menu-tags {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  height: 60px;
-  text-align: center;
-}
-
-.page-portfolio__menu-tag {
-  display: inline-block;
-  width: 60px;
-  height: 60px;
-  position: relative;
-}
-
-.page-portfolio__menu-tag > svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-
 .page-portfolio__box {
   display: flex;
   width: 100%;
   height: 100%;
   flex-direction: column;
-}
-
-.page-portfolio__header2 {
-  padding: 20px 0;
 }
 
 .page-portfolio__content {

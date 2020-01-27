@@ -225,10 +225,21 @@ p {
 @font-face {
   font-family: 'Roboto-Regular';
   src: local('Roboto-Regular'),
-    url(./assets/fonts/Roboto-Regular.ttf) format('ttf');
+    url('./assets/fonts/Roboto-Regular.ttf') format('ttf');
 }
 @font-face {
   font-family: 'Roboto-Medium';
   src: local('Roboto-Medium'),
-    url(./assets/fonts/Roboto-Medium.ttf) format('ttf');
+    url('./assets/fonts/Roboto-Medium.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'BowlbyOneSC-Regular';
+  src: url('./assets/fonts/BowlbyOneSC-Regular.eot');
+  src: url('./assets/fonts/BowlbyOneSC-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('./assets/fonts/BowlbyOneSC-Regular.woff') format('woff'),
+    url('./assets/fonts/BowlbyOneSC-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
 }

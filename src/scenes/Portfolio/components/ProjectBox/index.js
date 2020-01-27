@@ -10,9 +10,6 @@ import {GoArrowRight} from 'react-icons/go';
 //Import UTILS
 import {convertTagToIcon} from '../../utils';
 
-//Import Images
-import picture from '../../../../assets/images/project-image.jpg';
-
 // Import STYLES
 import './styles.css';
 
@@ -23,7 +20,7 @@ type Props = {|
   onClick?: ConfigProps => void,
 |};
 
-type ConfigProps = {|name?: string, tags?: Array<string>|};
+type ConfigProps = {|name?: string, tags?: Array<string>, cover: ?string|};
 
 const ProjectBox = memo<Props>(({className, config, isActive, onClick}) => {
   const classNames = [
@@ -57,7 +54,14 @@ const ProjectBox = memo<Props>(({className, config, isActive, onClick}) => {
         <HeaderUbubtu label={(config && config.name) || 'Header'} />
 
         <div className="project-box__content">
-          <img src={picture} alt="Project 1" />
+          {config.cover ? (
+            <img src={config.cover} alt="Project 1" />
+          ) : (
+            <div className="project-box__no-image">
+              <span className="project-box__no-image-404-txt">404</span>
+              <span className="project-box__no-image-txt">Image not found</span>
+            </div>
+          )}
 
           <div className="project-box__details">
             {config && config.tags && (

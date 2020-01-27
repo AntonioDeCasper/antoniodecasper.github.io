@@ -1,0 +1,42 @@
+.project-details {
+  text-align: center;
+  padding: 30px 40px 60px;
+  height: 100%;
+  position: relative;
+}
+
+.project-details__container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-details__slider {
+  padding-top: 25px;
+  position: relative;
+}
+
+.project-details__description-header {
+  padding: 20px 0;
+}
+
+.project-details__tags {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  text-align: center;
+}
+
+.project-details__tag {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+
+.project-details__tag > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}

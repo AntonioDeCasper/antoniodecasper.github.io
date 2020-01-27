@@ -1,0 +1,53 @@
+// @flow
+export const about = {
+  en: {
+    Me: 'Me',
+    header: 'What can i say... i like to code.',
+
+    FirstName: 'First name:',
+    FirstNameVal: 'Anton',
+    LastName: 'Last name',
+    LastNameVal: 'Gribenkov',
+    Birthdate: 'Birthdate:',
+    BirthdateVal: '25 july 1986',
+    Nationality: 'Nationality:',
+    NationalityVal: 'Russia:',
+    Address: 'Address:',
+    AddressVal: 'Barnaul, Altai Krai, Russia',
+    Languages: 'Languages:',
+    LanguagesVal: 'Russian (native), English',
+    Email: 'Email:',
+    EmailVal: 'antongribenkov@gmail.com',
+    Telegram: 'Telegram:',
+    TelegramVal: '@AntonGribenkov',
+    Skype: 'Skype:',
+    SkypeVal: 'Anton Gribenkov',
+
+    Skills: 'My skills',
+  },
+  ru: {
+    Me: 'Me',
+    header: 'Что я могу сказать... я люблю кодить :)',
+
+    FirstName: 'Имя:',
+    FirstNameVal: 'Антон',
+    LastName: 'Фамилия:',
+    LastNameVal: 'Грибеньков',
+    Birthdate: 'Дата рождения:',
+    BirthdateVal: '25 июля 1986',
+    Nationality: 'Гражданство:',
+    NationalityVal: 'Россия',
+    Address: 'Адрес:',
+    AddressVal: 'Россия, Алтайский край, г. Барнаул',
+    Languages: 'Языки:',
+    LanguagesVal: 'Русский (родной), Английский',
+    Email: 'Почта:',
+    EmailVal: 'antongribenkov@gmail.com',
+    Telegram: 'Телеграм:',
+    TelegramVal: '@AntonGribenkov',
+    Skype: 'Скайп:',
+    SkypeVal: 'Anton Gribenkov',
+
+    Skills: 'Мои навыки',
+  },
+};

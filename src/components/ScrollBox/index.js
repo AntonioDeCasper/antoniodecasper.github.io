@@ -4,9 +4,13 @@ import React, {memo, useState, useEffect, useRef} from 'react';
 // Import STYLES
 import './styles.css';
 
-type Props = {|className?: string, children?: React$Node|};
+type Props = {|
+  className?: string,
+  children?: React$Node,
+  isBottomPadding?: boolean,
+|};
 
-const ScrollBox = memo<Props>(({className, children}) => {
+const ScrollBox = memo<Props>(({className, children, isBottomPadding}) => {
   const classNames = ['scroll-box', className].join(' ');
   const [scrollBarWidthState, setScrollBarWidthState] = useState<number>(0);
 
@@ -29,7 +33,9 @@ const ScrollBox = memo<Props>(({className, children}) => {
         <div
           style={{right: scrollBarWidthState / 2}}
           className="scroll-box__inner-container">
-          {children}
+          {React.Children.toArray(children)}
+
+          {isBottomPadding && <div className="scroll-box__empty-container" />}
         </div>
       </div>
     </div>
