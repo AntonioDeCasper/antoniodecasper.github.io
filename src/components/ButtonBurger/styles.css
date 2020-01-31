@@ -1,0 +1,65 @@
+.button-burger {
+  width: 45px;
+  height: 30px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  display: none;
+}
+
+.button-burger__item {
+  display: block;
+  position: absolute;
+  height: 6px;
+  width: 100%;
+  background: #8e24aa;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.button-burger__first-item {
+  top: 0px;
+}
+
+.button-burger__second-item {
+  top: 12px;
+}
+
+.button-burger__third-item {
+  top: 24px;
+}
+
+/* ACTIVE STYLES */
+
+.button-burger__first-item,
+.button-burger__second-item,
+.button-burger__third-item {
+  transform-origin: left center;
+}
+
+.isActive .button-burger__first-item {
+  transform: rotate(45deg);
+  top: -6px;
+  left: 8px;
+}
+
+.isActive .button-burger__second-item {
+  width: 0%;
+  opacity: 0;
+}
+
+.isActive .button-burger__third-item {
+  transform: rotate(-45deg);
+  top: 26px;
+  left: 8px;
+}
+
+@media only screen and (max-width: 768px) {
+  .button-burger {
+    display: block;
+  }
+}

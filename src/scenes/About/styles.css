@@ -1,12 +1,13 @@
 .page-about {
-}
-
-.page-about__container {
-  padding-top: 20px;
-  border-bottom: 4px solid;
   display: block;
   text-align: center;
-  height: auto;
+  height: 100%;
+  position: relative;
+}
+
+.page-about__tab {
+  padding-top: 20px;
+  display: block;
 }
 
 .page-about__paragraph-header {
@@ -16,11 +17,13 @@
   top: 21px;
 }
 
-.page-about__paragraph-text {
-  position: relative;
-  padding: 10px 30px;
-  text-transform: uppercase;
-  z-index: 1;
+.page-about__backline-intro {
+  margin-top: 15px;
+}
+
+.page-about__backline-intro-text {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .page-about__personal-block {
@@ -29,7 +32,7 @@
   display: flex;
   flex-direction: row;
   position: relative;
-  border-top: 4px solid;
+  top: -17px;
 }
 
 .page-about__personal-photo {
@@ -63,12 +66,10 @@
   animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
   animation-duration: 1s;
   animation-fill-mode: forwards;
-}
-
-.photo-container__image {
   position: relative;
   top: 0;
   left: 0;
+  max-width: 100%;
 }
 
 .page-about__personal-info {
@@ -106,14 +107,24 @@
 
 .page-about__next-button {
   position: absolute;
-  bottom: -27px;
+  bottom: -20px;
   left: 0;
   right: 0;
   z-index: 1;
 }
 
-.page-about__next-header {
-  padding: 5px 30px;
+.page-about__tab-skills {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  transition: bottom ease 0.6s;
+  box-sizing: border-box;
+}
+
+.page-about__tab-skills.page-about_isActive {
+  bottom: 0;
 }
 
 /*ARROWS*/
@@ -164,5 +175,170 @@
   100% {
     opacity: 0;
     transform: rotate(45deg) translate(20px, 20px);
+  }
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 1200px) {
+  .photo-container {
+    width: 380px;
+    height: 380px;
+  }
+
+  .page-about__container {
+    padding-top: 15px;
+  }
+
+  .page-about__personal-block {
+    padding-top: 80px;
+    padding-bottom: 50px;
+  }
+
+  .page-about__personal-photo {
+    flex: 6;
+  }
+
+  .page-about__personal-info {
+    flex: 5;
+  }
+
+  .page-about__paragraph-info {
+    padding: 12px 0;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .page-about {
+    overflow-y: auto;
+  }
+
+  .page-about__container,
+  .page-about__tab {
+    height: auto;
+  }
+
+  .page-about__personal-photo {
+    padding-right: 20px;
+  }
+
+  .photo-container {
+    width: 340px;
+    height: 340px;
+  }
+
+  .page-about__personal-info {
+    padding-left: 20px;
+  }
+
+  .page-about__paragraph-info {
+    padding: 10px 0;
+  }
+
+  .page-about__next-button {
+    z-index: 2;
+  }
+
+  .page-about__next-button .page-about__backline-intro {
+    display: none;
+  }
+
+  .animated-arrows {
+    bottom: 0;
+  }
+
+  .page-about__tab-skills {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+    padding-top: 50px;
+    padding-bottom: 40px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .page-about__personal-block {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+  }
+
+  .page-about__personal-photo {
+    padding: 0;
+    flex: 1;
+  }
+
+  .photo-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .page-about__personal-info {
+    padding: 10px 25px;
+    margin-top: 20px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      #fff 12% 85%,
+      transparent
+    );
+  }
+
+  .page-about__personal-info .text-common {
+    font-size: 2.2rem;
+  }
+
+  .page-about__personal-info .page-about__first-column {
+    width: 120px;
+  }
+
+  .page-about__tab-skills {
+    padding-bottom: 60px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .page-content__container.page-about__tab {
+    overflow-y: hidden;
+  }
+
+  .photo-container {
+    width: 240px;
+    height: 240px;
+  }
+
+  .page-about__backline-intro {
+    margin-top: 10px;
+  }
+
+  .page-about__personal-block {
+    padding-top: 40px;
+    padding-bottom: 0;
+  }
+
+  .page-about__personal-info {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .page-about__personal-info .page-about__first-column {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 1.8em;
+  }
+
+  .photo-container__border {
+    top: -10px;
+    left: -15px;
+  }
+
+  .page-about__google-map,
+  .page-about__next-button {
+    display: none;
+  }
+
+  .page-about__tab-skills {
+    padding-top: 0;
   }
 }

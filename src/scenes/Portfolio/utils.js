@@ -1,5 +1,6 @@
 //@flow
 import React from 'react';
+import {useWindowDimension} from '../../store';
 
 //Import ICONS
 import {FaCss3, FaHtml5, FaReact} from 'react-icons/fa';
@@ -60,4 +61,32 @@ const convertTagToIcon = (tagName: string) => {
   }
 };
 
-export {convertTagToIcon};
+const useSideMenuWidth = () => {
+  const {width} = useWindowDimension();
+
+  if (width) {
+    if (width > 1200) {
+      return 750;
+    }
+
+    if (width > 992) {
+      return 700;
+    }
+
+    if (width > 768) {
+      return 600;
+    }
+
+    if (width > 480) {
+      return 380;
+    }
+
+    if (width > 0) {
+      return width;
+    }
+  }
+
+  return 250;
+};
+
+export {convertTagToIcon, useSideMenuWidth};

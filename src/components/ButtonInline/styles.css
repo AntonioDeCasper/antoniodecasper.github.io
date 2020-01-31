@@ -3,6 +3,7 @@
   transition: all linear 0.3s;
   display: block;
   text-decoration: none;
+  font-size: 1.6rem;
 }
 
 .btn-inline:hover {
@@ -34,13 +35,13 @@
   top: 0;
 }
 
-.isActive .btn-inline__bottom-line,
+.btn-inline_isActive .btn-inline__bottom-line,
 .btn-inline__text:hover .btn-inline__bottom-line {
   transform: scaleX(1);
 }
 
 /*MODIFICATIONS*/
-.btn-inline_active_double.isActive .btn-inline__top-line,
+.btn-inline_active_double.btn-inline_isActive .btn-inline__top-line,
 .btn-inline_active_double .btn-inline__text:hover .btn-inline__top-line {
   transform: scaleX(1);
 }

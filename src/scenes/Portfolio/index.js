@@ -1,15 +1,18 @@
 //@flow
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
-import {ThemeContext} from '../../store';
+import {useTheme, useGlobalState, useDispatch} from '../../store';
 
 //Import COMPONENTS
-import {Button, ScrollBox, SideMenu} from '../../components';
+import {Button, ScrollBox, SideMenu, TextBackline} from '../../components';
 import ProjectBox from './components/ProjectBox';
 import ProjectDetails from './components/ProjectDetails';
 
 //Import CONSTANTS
-import {TAGS, PROJECTS, SIDE_MENU_WIDTH} from './constants';
+import {TAGS, PROJECTS} from './constants';
+
+//Import UTILS/HOOKS
+import {useSideMenuWidth} from './utils';
 
 //Import STYLES
 import './styles.css';
@@ -21,11 +24,12 @@ type Props = {
 
 const PortfolioPage = ({className}: Props) => {
   const classNames = ['page-content page-portfolio', className].join(' ');
-  const {primaryColor, secondaryColor, textColor} = useContext(
-    ThemeContext,
-  ).colors.portfolio;
-  const {pageTransition} = useContext(ThemeContext).variables;
+  const {primaryColor, secondaryColor, textColor} = useTheme().colors.portfolio;
+  const {pageTransition} = useTheme().variables;
+  const sideMenuWIdth = useSideMenuWidth();
   const {t} = useTranslation('portfolio');
+  const {projectMenuState} = useGlobalState();
+  const {openProjectMenu, closeProjectMenu} = useDispatch();
 
   const [isRenderState, setIsRenderState] = useState<boolean>(false);
   const [toggledTagsState, setToggledTagsState] = useState<
@@ -34,10 +38,12 @@ const PortfolioPage = ({className}: Props) => {
   const [projectsFilterState, setProjectsFilterState] = useState<Set<number>>(
     new Set([]),
   );
-  const [sideMenuState, setSideMenuState] = useState<{
+  const [filterMenuState, setFilterMenuState] = useState<{
     state: boolean,
-    data: ?{[string]: any},
-  }>({state: false, data: null});
+    offset: number,
+  }>({state: false, offset: 0});
+
+  const contentContainerRef = useRef(null);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -47,7 +53,7 @@ const PortfolioPage = ({className}: Props) => {
     return () => {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [pageTransition]);
 
   useEffect(() => {
     if (PROJECTS.length > 0) {
@@ -76,12 +82,25 @@ const PortfolioPage = ({className}: Props) => {
   };
 
   const handleProjectClick = (config, index) => {
-    // console.log('handleProjectClick: ', config);
-    setSideMenuState({state: true, data: PROJECTS[index]});
+    openProjectMenu(PROJECTS[index]);
   };
 
   const handleChangeMenuState = state => {
-    !state && setSideMenuState(prevState => ({...prevState, state}));
+    !state && closeProjectMenu();
+  };
+
+  const handleToggleFilterBtn = () => {
+    let filterMenuOffset = 0;
+
+    if (!filterMenuState.state && contentContainerRef.current) {
+      filterMenuOffset = contentContainerRef.current.scrollTop;
+    }
+
+    setFilterMenuState(prevState => ({
+      ...prevState,
+      state: !prevState.state,
+      offset: filterMenuOffset,
+    }));
   };
 
   console.log('%cRender Portfolio Page', 'color: green');
@@ -106,12 +125,12 @@ const PortfolioPage = ({className}: Props) => {
     <div
       style={{
         ...styles.pageContainer,
-        ...(sideMenuState.state
+        ...(projectMenuState.isActive
           ? {
               transform: `translateX(${
-                typeof SIDE_MENU_WIDTH === 'string'
-                  ? `-${SIDE_MENU_WIDTH}`
-                  : `${SIDE_MENU_WIDTH * -1}px`
+                typeof sideMenuWIdth === 'string'
+                  ? `-${sideMenuWIdth}`
+                  : `${sideMenuWIdth * -1}px`
               })`,
               zIndex: 1000,
             }
@@ -121,18 +140,23 @@ const PortfolioPage = ({className}: Props) => {
       <SideMenu
         style={{
           mainContainer: {
-            width: SIDE_MENU_WIDTH,
+            width: sideMenuWIdth,
             backgroundColor: primaryColor,
           },
         }}
-        isActive={sideMenuState.state}
+        overlay
+        isActive={projectMenuState.isActive}
         onStateChange={handleChangeMenuState}>
-        <ProjectDetails data={sideMenuState.data} />
+        <ProjectDetails data={projectMenuState.data} />
       </SideMenu>
 
       <div className="page-portfolio__container">
         {isRenderState && (
-          <div className="page-content__container page-portfolio__container-inner">
+          <div
+            ref={contentContainerRef}
+            className={`page-content__container page-portfolio__container-inner ${
+              filterMenuState.state ? 'page-portfolio_isActive_filters' : ''
+            }`}>
             <div className="page-portfolio__box">
               <div className="header header_type_h1 header_tt_uppercase header_fw_bold animated fadeIn">
                 <span style={{color: secondaryColor}}>My</span>
@@ -140,16 +164,18 @@ const PortfolioPage = ({className}: Props) => {
                 <span>Portfolio</span>
               </div>
 
-              <div className="paragraph text-backline page-portfolio__header2">
-                <div
+              <TextBackline
+                textWrapperClassName="animated bounceInRight"
+                className="paragraph"
+                options={{text: {backgroundColor: primaryColor}}}>
+                <span
+                  className="text-common text-common_tt_uppercase"
                   style={{
-                    background: primaryColor,
-                  }}
-                  className="text-common text-common_tt_uppercase text-backline__text-box animated bounceInRight">
-                  <span style={{color: secondaryColor}}>{t('Header')}</span>
-                </div>
-                <div className="text-backline__line"></div>
-              </div>
+                    color: secondaryColor,
+                  }}>
+                  {t('Header')}
+                </span>
+              </TextBackline>
 
               <div className="paragraph">
                 <div className="text-common animated bounceInLeft">
@@ -159,26 +185,66 @@ const PortfolioPage = ({className}: Props) => {
 
               <div className="page-portfolio__content">
                 <div className="page-portfolio__tags-filter">
-                  {TAGS.map((tag, index) => (
+                  <Button
+                    className="page-portfolio__tags-filter-btn"
+                    text="Filters"
+                    onClick={handleToggleFilterBtn}
+                    activeStyle={{
+                      backgroundColor: secondaryColor,
+                      color: textColor,
+                      borderColor: secondaryColor,
+                    }}
+                  />
+
+                  <div
+                    style={{
+                      backgroundColor: primaryColor,
+                      borderColor: secondaryColor,
+                      top: filterMenuState.state
+                        ? filterMenuState.offset
+                        : '-100%',
+                    }}
+                    className={`page-portfolio__tags-filter-wrapper`}>
+                    <div className="paragraph page-portfolio__tag-header">
+                      <span className="text-common text-common_fz_medium text-common_tt_uppercase">
+                        Filters:
+                      </span>
+                    </div>
+
+                    {TAGS.map((tag, index) => (
+                      <Button
+                        isToggleable
+                        isToggled={toggledTagsState[index].state}
+                        onToggle={state => handleToggle(index, state)}
+                        className={`page-portfolio__tag-selector animated flipInX`}
+                        key={index}
+                        text={tag}
+                        theme="tag"
+                        style={{
+                          animationDelay: `${index * 100}ms`,
+                        }}
+                        activeStyle={{
+                          backgroundColor: secondaryColor,
+                          color: textColor,
+                          borderColor: secondaryColor,
+                        }}
+                      />
+                    ))}
+
                     <Button
-                      isToggleable
-                      isToggled={toggledTagsState[index].state}
-                      onToggle={state => handleToggle(index, state)}
-                      className={`page-portfolio__tag-selector animated flipInX`}
-                      key={index}
-                      text={tag}
-                      theme="tag"
+                      className="page-portfolio__tags-filter-btn"
+                      text="Close"
+                      onClick={handleToggleFilterBtn}
                       style={{
-                        marginLeft: index === 0 ? 0 : 10,
-                        animationDelay: `${index * 100}ms`,
+                        borderColor: secondaryColor,
+                        color: secondaryColor,
                       }}
                       activeStyle={{
                         backgroundColor: secondaryColor,
                         color: textColor,
-                        borderColor: secondaryColor,
                       }}
                     />
-                  ))}
+                  </div>
                 </div>
 
                 <ScrollBox

@@ -1,14 +1,18 @@
 //@flow
-import React, {memo, useContext} from 'react';
+import React, {memo} from 'react';
 import ImageGallery from 'react-image-gallery';
-import {ThemeContext} from '../../../../store';
+import {useTheme, useDispatch} from '../../../../store';
 import {useTranslation} from 'react-i18next';
 
 //Import COMPONENTS
 import HeaderUbuntu from '../HeaderUbuntu';
+import {TextBackline, Button} from '../../../../components';
 
 //Import UTILS
 import {convertTagToIcon} from '../../utils';
+
+//Import ICONS
+import {FaArrowLeft} from 'react-icons/fa';
 
 // Import STYLES
 import './styles.css';
@@ -33,25 +37,44 @@ const images = [
 const ProjectDetails = memo<Props>(({className, data}) => {
   const classNames = ['project-details', className].join(' ');
 
-  const {primaryColor, secondaryColor, textColor} = useContext(
-    ThemeContext,
-  ).colors.portfolio;
+  const {primaryColor, secondaryColor, textColor} = useTheme().colors.portfolio;
   const {t} = useTranslation('portfolio');
+  const {closeProjectMenu} = useDispatch();
+
+  const handleCloseMenu = () => {
+    closeProjectMenu();
+  };
 
   return (
     <div className={classNames}>
+      <div
+        style={{borderColor: secondaryColor}}
+        className="project-details__header">
+        <Button
+          className="project-details__header-btn"
+          text={
+            <>
+              <FaArrowLeft />
+              <span>Back</span>
+            </>
+          }
+          onClick={handleCloseMenu}
+        />
+      </div>
+
       <div className="project-details__container">
         <div className="paragraph">
           <div className="header header_type_h3 header_tt_uppercase header_fw_bold">
             <span style={{color: secondaryColor}}>{t('ProjectText')}</span>
             <span>:</span>
           </div>
-          <div className="header header_type_h3 header_tt_uppercase header_fw_bold">
+
+          <div className="header header_type_h3 header_tt_uppercase header_fw_bold project-details__project-name-txt">
             {data ? data.name : 'Jonh Doe'}
           </div>
         </div>
 
-        <div className="paragraph paragraph_paddings_large">
+        <div className="paragraph paragraph_paddings_large project-details__paragraph-slider">
           <div className="project-details__slider">
             <ImageGallery
               items={data ? data.gallery : images}
@@ -64,16 +87,16 @@ const ProjectDetails = memo<Props>(({className, data}) => {
           </div>
         </div>
 
-        <div className="paragraph text-backline project-details__description-header">
-          <div
-            style={{
-              background: primaryColor,
-            }}
-            className="header header_type_h4 header_tt_uppercase header_fw_medium text-backline__text-box">
-            <span style={{color: textColor}}>{t('HeaderAboutProject')}</span>
-          </div>
-          <div className="text-backline__line"></div>
-        </div>
+        <TextBackline
+          textWrapperClassName="animated bounceInRight"
+          className="project-details__description-header"
+          options={{text: {backgroundColor: primaryColor}}}>
+          <span
+            className="header header_type_h4 header_tt_uppercase header_fw_medium"
+            style={{color: textColor}}>
+            {t('HeaderAboutProject')}
+          </span>
+        </TextBackline>
 
         <div className="paragraph paragraph_align_left">
           <div className="text-common">{data ? data.description : 'Empty'}</div>

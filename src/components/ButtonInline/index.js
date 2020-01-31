@@ -10,7 +10,7 @@ type Props = {
   onClick?: any => void,
   onMouseEnter?: () => void,
   onMouseLeave?: () => void,
-  style?: {color: string, hoverColor: string},
+  style?: {color?: string, hoverColor?: string, activeColor?: string},
   isActive?: boolean,
 };
 
@@ -27,7 +27,7 @@ const ButtonInline = memo<Props>(
     const classNames = [
       'btn-inline',
       className,
-      isActive ? 'isActive' : '',
+      isActive ? 'btn-inline_isActive' : '',
     ].join(' ');
     const [hoverState, setHoverState] = useState<boolean>(false);
 
@@ -43,25 +43,35 @@ const ButtonInline = memo<Props>(
       setHoverState(status);
     };
 
+    const setTextColor = () => {
+      if (isActive) {
+        if (style && style.activeColor) {
+          return {color: style.activeColor};
+        }
+      }
+
+      if (hoverState) {
+        if (style && style.hoverColor && !style.activeColor) {
+          return {color: style.hoverColor};
+        }
+      }
+
+      return {};
+    };
+
     console.log('%cRender ButtonInline', 'color: green');
 
     return (
       <div
         style={{
-          color:
-            hoverState || isActive
-              ? style
-                ? style.hoverColor
-                : 'red'
-              : style
-              ? style.color
-              : '#fff',
+          ...(style && style.color ? {color: style.color} : {}),
+          ...setTextColor(),
         }}
         onMouseEnter={() => handleMouseHover(true)}
         onMouseLeave={() => handleMouseHover(false)}
         onClick={onClick}
         className={classNames}>
-        <span className="btn-inline__text">
+        <div className="btn-inline__text">
           {text}
           <div
             style={{backgroundColor: style ? style.hoverColor : '#2196f3'}}
@@ -69,7 +79,7 @@ const ButtonInline = memo<Props>(
           <div
             style={{backgroundColor: style ? style.hoverColor : '#2196f3'}}
             className="btn-inline__bottom-line"></div>
-        </span>
+        </div>
       </div>
     );
   },

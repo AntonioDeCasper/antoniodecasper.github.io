@@ -8,8 +8,6 @@ import thumbPortfolioPic1 from '../../assets/images/projects/portfolio/thumbnail
 import thumbPortfolioPic2 from '../../assets/images/projects/portfolio/thumbnail/picture_2.png';
 import thumbPortfolioPic3 from '../../assets/images/projects/portfolio/thumbnail/picture_3.png';
 
-const SIDE_MENU_WIDTH = 750;
-
 const TAGS = [
   'HTML5',
   'CSS3',
@@ -170,4 +168,4 @@ const PROJECTS = [
   },
 ];
 
-export {TAGS, PROJECTS, SIDE_MENU_WIDTH};
+export {TAGS, PROJECTS};

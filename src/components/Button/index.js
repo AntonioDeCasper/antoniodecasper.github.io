@@ -17,6 +17,7 @@ type Props = {|
   isToggleable?: boolean,
   onToggle?: boolean => void,
   isToggled?: boolean,
+  onClick?: () => void,
 |};
 
 const Button = memo<Props>(
@@ -33,6 +34,7 @@ const Button = memo<Props>(
     isToggleable,
     onToggle,
     isToggled,
+    onClick,
   }) => {
     const classNames = [
       'button',
@@ -120,6 +122,7 @@ const Button = memo<Props>(
 
     const handleClick = () => {
       isToggleable && setToggleState(prevState => !prevState);
+      !isToggleable && onClick && onClick();
     };
 
     const styles = {

@@ -1,6 +1,3 @@
-.page-contact {
-}
-
 .page-contact__container {
   padding-top: 20px;
   /* border-bottom: 4px solid; */
@@ -24,15 +21,20 @@
   justify-content: center;
 }
 
-.page-contact__contacts-wrapper {
-}
-
 .page-contact__contact-paragraph {
   margin-bottom: 10px;
 }
 
 .page-contact__contact-text {
   margin-top: 5px;
+}
+
+.page-contact__contact-link {
+  text-decoration: underline;
+}
+
+.page-contact__contact-link:hover {
+  text-decoration: none;
 }
 
 .page-contact__contacts-icon {
@@ -54,6 +56,7 @@
 
 .page-contact__form-block {
   flex: 3;
+  padding: 0 15px;
 }
 
 .page-contact__form-paragraph {
@@ -72,4 +75,126 @@
 .page-contact__submit {
   padding: 15px 30px;
   margin-top: 20px;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 1200px) {
+  .page-contact__contacts-block {
+    flex: 1;
+  }
+
+  .page-contact__form-block {
+    flex: 2;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .page-contact__contacts-form {
+    flex-direction: column;
+    padding-top: 20px;
+  }
+
+  .page-contact__container {
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 30px;
+  }
+
+  .page-contact__contacts-block .text-common_line {
+    display: inline-block;
+    width: 120px;
+    vertical-align: middle;
+  }
+
+  .page-contact__contacts-block .text-common_line,
+  .page-contact__contacts-block .text-common {
+    font-size: 1.8rem;
+  }
+
+  .page-contact__contact-text {
+    margin-top: 0;
+    margin-left: 10px;
+  }
+
+  .page-contact__social-links-block {
+    margin-top: 0;
+    display: block;
+    text-align: center;
+  }
+
+  .page-contact__form-block .text-common {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .page-contact__social-txt {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .page-contact__container {
+    padding-bottom: 60px;
+  }
+
+  .page-contact__form-paragraph {
+    flex-direction: column;
+    padding-top: 30px;
+  }
+
+  .page-contact__form-name {
+    margin-right: 0;
+  }
+
+  .page-contact__form-email {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .page-contact__form-block {
+    padding: 0;
+  }
+
+  .page-contact .header_type_h1 {
+    font-size: 4.6rem;
+  }
+
+  .page-content__second-header .text-common {
+    font-size: 1.8rem;
+  }
+
+  .page-contact__contact-paragraph {
+    margin-bottom: 0;
+  }
+
+  .page-contact__contacts-wrapper .paragraph {
+    text-align: center;
+  }
+
+  .page-contact__contacts-block .text-common_line {
+    display: block;
+    width: 100%;
+  }
+
+  .page-contact__contact-text {
+    margin-left: 0px;
+    margin-top: 5px;
+  }
+
+  .page-contact__contacts-form {
+    padding-top: 0;
+  }
+
+  .input__placeholder {
+    font-size: 2rem;
+    margin-top: 0;
+  }
+
+  .input__field {
+    font-size: 2rem;
+  }
+}
+@media only screen and (max-width: 320px) {
 }

@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-around;
   padding: 20px 0;
-  position: fixed;
+  position: absolute;
   z-index: 999;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .navigation__links-last {
-  margin-right: 0;
+  margin-right: 0 !important;
 }
 
 .navigation__lng-btn {
@@ -43,4 +43,33 @@
 }
 .navigation_delay_5 {
   animation-delay: 1s;
+}
+
+/* MEDIA */
+
+@media only screen and (max-width: 992px) {
+  .navigation__links {
+    margin-right: 30px;
+    font-size: 14px;
+  }
+
+  .navigation__lng-btn {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navigation {
+    justify-content: flex-end;
+    padding: 14px 15px;
+    border-bottom: 2px solid transparent;
+  }
+
+  .navigation__item {
+    display: none;
+  }
+
+  .navigation__burger-item {
+    display: block;
+  }
 }

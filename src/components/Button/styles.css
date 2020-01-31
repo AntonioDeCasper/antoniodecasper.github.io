@@ -110,3 +110,11 @@
   padding: 5px 10px;
   font-size: 14px;
 }
+
+/* MEDIA */
+
+@media only screen and (max-width: 480px) {
+  .button {
+    width: 100%;
+  }
+}

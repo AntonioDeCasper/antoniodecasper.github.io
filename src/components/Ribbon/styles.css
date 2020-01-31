@@ -1,0 +1,59 @@
+.ribbon {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 200px;
+  z-index: 1000;
+}
+
+.ribbon__text {
+  width: 200%;
+  transform: rotate(-45deg);
+  background-color: #e53935;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 22px;
+  padding: 10px 20px;
+  top: 35%;
+  left: -55%;
+  color: #ffffff;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+}
+
+/* MEDIA */
+
+@media only screen and (max-width: 992px) {
+  .ribbon__text {
+    font-size: 14px;
+    padding: 6px 10px;
+    top: 21%;
+    left: -72%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .ribbon {
+    width: 100%;
+    height: auto;
+    top: auto;
+    bottom: 0;
+  }
+
+  .ribbon__text {
+    width: 100%;
+    display: block;
+    transform: none;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    padding: 10px 0;
+    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
+  }
+}

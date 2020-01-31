@@ -8,6 +8,8 @@ const SRC_DIR = path.resolve(__dirname, 'src');
 const OUTPUT_DIR = path.resolve(__dirname, 'build');
 const CUSTOM_LIBRARIES = [
   path.resolve(__dirname, 'node_modules/react-image-gallery/styles'), //react-image-gallery
+  path.resolve(__dirname, 'node_modules/animate.css/'), //animate.css
+  path.resolve(__dirname, 'node_modules/normalize.css/'), //normalize.css
 ];
 
 // Any directories you will be adding code/files into, need to be

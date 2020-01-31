@@ -1,5 +1,5 @@
 //@flow
-import React, {memo, useRef, useEffect, useState} from 'react';
+import React, {memo, useRef} from 'react';
 
 // Import STYLES
 import './styles.css';
@@ -8,41 +8,42 @@ type Props = {|
   className?: string,
   style?: {|mainContainer?: {[key: string]: any}|},
   isActive?: boolean,
+  animationType?: 'slideLeft' | 'slideRight',
   onStateChange?: boolean => void,
   children?: React$Node,
+  overlay?: boolean,
 |};
 
 const SideMenu = memo<Props>(
-  ({className, style, isActive, onStateChange, children}) => {
+  ({
+    className,
+    style,
+    isActive,
+    onStateChange,
+    children,
+    animationType,
+    overlay,
+  }) => {
     const classNames = [
       'side-menu',
+      animationType === 'slideLeft' ? 'side-menu_animation_slide-left' : '',
+      animationType === 'slideRight' ? 'side-menu_animation_slide-right' : '',
       className,
       isActive ? 'isActive' : '',
     ].join(' ');
-    const [menuWidthState, setMenuWidthState] = useState<?number>(null);
 
     const menuContainerRef = useRef<?HTMLDivElement>(null);
 
-    useEffect(() => {
-      window.addEventListener('resize', handleWindowResize);
-      const element = menuContainerRef.current;
-
-      if (element) {
-        setMenuWidthState(element.clientWidth);
+    const setMenuInitialPosition = () => {
+      if (animationType === 'slideLeft') {
+        return style && style.mainContainer && style.mainContainer.width
+          ? {left: style.mainContainer.width * -1}
+          : {};
       }
 
-      return function clean() {
-        console.log('CLEAN side-menu');
-        window.removeEventListener('resize', handleWindowResize);
-      };
-    }, []);
-
-    const handleWindowResize = () => {
-      const element = menuContainerRef.current;
-
-      if (element) {
-        setMenuWidthState(element.clientWidth);
-      }
+      return style && style.mainContainer && style.mainContainer.width
+        ? {right: style.mainContainer.width * -1}
+        : {};
     };
 
     const handleCloseMenu = () => {
@@ -54,20 +55,23 @@ const SideMenu = memo<Props>(
         <div
           ref={menuContainerRef}
           style={{
-            //...{
-            //  transform: `translateX(-${isActive ? '100%' : '0'})`,
-            //},
-            ...(menuWidthState ? {right: menuWidthState * -1} : {}),
-            ...(style ? style.mainContainer : {}),
+            ...(style
+              ? {
+                  ...style.mainContainer,
+                  ...setMenuInitialPosition(),
+                }
+              : {}),
           }}
           className={classNames}>
           {children}
         </div>
 
-        <div
-          onClick={handleCloseMenu}
-          style={{right: isActive ? '0' : '-100%'}}
-          className="side-menu-overlay"></div>
+        {overlay && (
+          <div
+            onClick={handleCloseMenu}
+            style={{right: isActive ? '0' : '-100%'}}
+            className="side-menu-overlay"></div>
+        )}
       </>
     );
   },

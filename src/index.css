@@ -9,6 +9,10 @@ html {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+html {
+  font-size: 10px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -28,28 +32,16 @@ p {
   right: 0;
   bottom: 0;
   top: 0;
-  padding-top: 61px;
+  padding-top: 68px;
 }
 
 .page-content__container {
   display: flex;
   justify-content: center;
-  width: 1440px;
+  max-width: 1440px;
   height: 100%;
   margin: 0 auto;
   position: relative;
-}
-
-.page-content__box {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.page-content__box_size_double {
-  flex: 2;
 }
 
 /*TEXT STYLES*/
@@ -89,19 +81,19 @@ p {
 }
 
 .header_type_h1 {
-  font-size: 56px;
+  font-size: 5.6rem;
 }
 
 .header_type_h2 {
-  font-size: 42px;
+  font-size: 4.2rem;
 }
 
 .header_type_h3 {
-  font-size: 32px;
+  font-size: 3.2rem;
 }
 
 .header_type_h4 {
-  font-size: 26px;
+  font-size: 2.6rem;
 }
 
 .header_tt_uppercase {
@@ -123,7 +115,7 @@ p {
 /* text-common */
 
 .text-common {
-  font-size: 16px;
+  font-size: 1.6rem;
   display: inline-block;
   vertical-align: middle;
 }
@@ -133,11 +125,11 @@ p {
 }
 
 .text-common_fz_small {
-  font-size: 14px;
+  font-size: 1.4rem;
 }
 
 .text-common_fz_medium {
-  font-size: 20px;
+  font-size: 2rem;
 }
 
 .text-common_weight_bold {
@@ -156,62 +148,64 @@ p {
   color: #fbc02d;
 }
 
-/*text-backline*/
-.text-backline {
-  position: relative;
-  z-index: 1;
-}
-
-.text-backline__line {
-  position: absolute;
-  width: 100%;
-  height: 4px;
-  background-color: #fbc02d;
-  top: 50%;
-  margin-top: -2px;
-  z-index: -1;
-}
-
-.text-backline__text-box {
-  padding: 0 20px;
-}
-
-/*MEDIA QUERY*/
-
-@media only screen and (max-width: 1200px) {
+/* MEDIA QUERIES */
+@media only screen and (max-width: 1439px) {
   .page-content__container {
-    width: 1170px;
+    width: 1200px;
   }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1200px) {
   .page-content__container {
     width: 970px;
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
   .page-content__container {
     width: 750px;
   }
 }
-@media only screen and (max-width: 480px) {
+
+@media only screen and (max-width: 768px) {
+  .page-content {
+    display: flex;
+    flex-direction: column;
+  }
+
   .page-content__container {
     width: 100%;
+    padding: 0 15px;
+  }
+
+  html {
+    font-size: 9px;
   }
 }
+
+@media only screen and (max-width: 480px) {
+  .page-content__container {
+    display: block;
+    overflow-y: auto;
+  }
+
+  .page-content {
+    padding-top: 60px;
+  }
+}
+
 @media only screen and (max-width: 320px) {
 }
 
 /*PAGE ANIMATIONS*/
-.switch-page-enter {
+/* .switch-page-enter {
 }
 .switch-page-enter:before {
 }
 .switch-page-enter-active:before {
 }
 .switch-page-enter-done {
-}
+} */
 
 .switch-page-exit {
   z-index: 2;

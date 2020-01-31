@@ -1,8 +1,8 @@
 //@flow
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Formik} from 'formik';
 import {useTranslation} from 'react-i18next';
-import {ThemeContext} from '../../store';
+import {useTheme, useWindowDimension} from '../../store';
 
 //Import COMPONENTS
 import {Link, Button} from '../../components';
@@ -11,14 +11,11 @@ import {InputWithValidation} from '../../hoc';
 //Import HOOKS
 import {useContactInfo} from './hooks';
 
-//Import ICONS
-import {FaFacebookSquare, FaLinkedin} from 'react-icons/fa';
-
 //Import LIBS
 import {ContactSchema} from '../../validation';
 
 //Import CONSTANTS
-import {INPUT_DEFAULT_STYLES} from './constants';
+import {INPUT_DEFAULT_STYLES, SOCIAL_LINKS} from './constants';
 
 //Import STYLES
 import './styles.css';
@@ -30,10 +27,9 @@ type Props = {
 const ContactPage = ({className}: Props) => {
   const classNames = ['page-content page-contact', className].join(' ');
   const {t} = useTranslation('contact');
-  const {primaryColor, secondaryColor, textColor} = useContext(
-    ThemeContext,
-  ).colors.contact;
-  const {pageTransition} = useContext(ThemeContext).variables;
+  const {width} = useWindowDimension();
+  const {primaryColor, secondaryColor, textColor} = useTheme().colors.contact;
+  const {pageTransition} = useTheme().variables;
   const {info} = useContactInfo();
 
   const [isRenderState, setIsRenderState] = useState<boolean>(false);
@@ -46,7 +42,7 @@ const ContactPage = ({className}: Props) => {
     return () => {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [pageTransition]);
 
   const styles = {
     pageContact: {
@@ -61,6 +57,9 @@ const ContactPage = ({className}: Props) => {
     },
     socialLinkLinkedIn: {
       color: '#3977b5',
+    },
+    socialLinkGithub: {
+      color: '#ffffff',
     },
   };
 
@@ -117,36 +116,28 @@ const ContactPage = ({className}: Props) => {
                 <div className="paragraph paragraph_align_left page-contact__contact-paragraph">
                   <div
                     style={{animationDelay: `600ms`}}
-                    className="text-common text-common_line animated flipInX">
+                    className="text-common text-common_line animated flipInX page-contact__social-txt">
                     {t('Social')}
                   </div>
 
                   <div className="text-common page-contact__social-links-block">
-                    <Link
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="page-contact__social-link animated flipInX"
-                      href="https://www.facebook.com/anton.gribenkov"
-                      onHoverStyle={styles.socialLinkFacebook}
-                      style={{
-                        ...styles.socialLink,
-                        ...{animationDelay: `700ms`},
-                      }}>
-                      <FaFacebookSquare size={30} />
-                    </Link>
-
-                    <Link
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="page-contact__social-link animated flipInX"
-                      href="https://www.linkedin.com/in/anton-gribenkov/"
-                      onHoverStyle={styles.socialLinkLinkedIn}
-                      style={{
-                        ...styles.socialLink,
-                        ...{animationDelay: `800ms`},
-                      }}>
-                      <FaLinkedin size={30} />
-                    </Link>
+                    {SOCIAL_LINKS(width && width < 992 ? 50 : 30).map(
+                      socialLink => (
+                        <Link
+                          key={socialLink.id}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="page-contact__social-link animated flipInX"
+                          href={socialLink.to}
+                          onHoverStyle={styles[socialLink.id]}
+                          style={{
+                            ...styles.socialLink,
+                            ...{animationDelay: `700ms`},
+                          }}>
+                          {socialLink.icon}
+                        </Link>
+                      ),
+                    )}
                   </div>
                 </div>
               </div>

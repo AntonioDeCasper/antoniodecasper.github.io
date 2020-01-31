@@ -1,6 +1,6 @@
 //@flow
-import React, {memo, useState, useEffect, useContext} from 'react';
-import {ThemeContext} from '../../store';
+import React, {memo, useState, useEffect} from 'react';
+import {useTheme} from '../../store';
 import {useTranslation} from 'react-i18next';
 import capitalize from 'lodash/capitalize';
 
@@ -30,7 +30,7 @@ const NavigationView = memo<Props>(({className, route}) => {
     route ? 'isActive' : '',
     className,
   ].join(' ');
-  const {colors} = useContext(ThemeContext);
+  const {colors} = useTheme();
   const {t} = useTranslation('routes');
 
   const [
@@ -50,26 +50,29 @@ const NavigationView = memo<Props>(({className, route}) => {
       right: route ? -RADIUS : -RADIUS * 2,
       bottom: route ? -RADIUS : -RADIUS * 2,
     },
-    homeIcon: {
-      marginLeft: -150,
-      marginTop: -140,
-    },
-    aboutIcon: {
-      marginLeft: -155,
-      marginTop: -150,
-    },
-    portfolioIcon: {
-      marginLeft: -153,
-      marginTop: -140,
-    },
-    contactIcon: {
-      marginLeft: -145,
-      marginTop: -126,
-    },
   };
 
   useEffect(() => {
     const calcConfiguration = () => {
+      const styles = {
+        homeIcon: {
+          marginLeft: -150,
+          marginTop: -140,
+        },
+        aboutIcon: {
+          marginLeft: -155,
+          marginTop: -150,
+        },
+        portfolioIcon: {
+          marginLeft: -153,
+          marginTop: -140,
+        },
+        contactIcon: {
+          marginLeft: -145,
+          marginTop: -126,
+        },
+      };
+
       if (route === '/') {
         return {
           backgroundColor: colors.home.primaryColor,
@@ -135,7 +138,7 @@ const NavigationView = memo<Props>(({className, route}) => {
     };
 
     setConfigurationState(calcConfiguration());
-  }, [route]);
+  }, [route, colors]);
 
   return (
     <div style={styles.navigationViewStyle} className={classNames}>

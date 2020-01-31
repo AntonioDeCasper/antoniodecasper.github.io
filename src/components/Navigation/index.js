@@ -1,18 +1,12 @@
-//@flow
-import React, {
-  memo,
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-  useContext,
-} from 'react';
+/* @flow */
+import React, {memo, useState, useEffect, useCallback, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
-import {ThemeContext} from '../../store';
+import {useWindowDimension, useTheme} from '../../store';
 
 //Import COMPONENTS
 import NavigationLink from './components/NavigationLink';
-import ButtonInline from '../ButtonInline';
+import NavigationMenuContent from './components/NavigationMenuContent';
+import {ButtonBurger, ButtonInline, SideMenu} from '../';
 
 //Import STYLES
 import './styles.css';
@@ -20,18 +14,21 @@ import './styles.css';
 type Props = {|onLinkHover: (?string) => void, location: Object|};
 
 const Navigation = memo<Props>(({onLinkHover, location}) => {
+  const {width} = useWindowDimension();
+  const {colors} = useTheme();
+  const {pageTransition} = useTheme().variables;
   const {t, i18n} = useTranslation('routes');
-  const {colors} = useContext(ThemeContext);
   const colorFieldByLocation =
     colors[
       location.pathname.split('/')[1] ? location.pathname.split('/')[1] : 'home'
     ];
 
   const [languageState, setLanguageState] = useState<string>(i18n.language);
+  const [isMenuActiveState, setIsMenuActiveState] = useState<boolean>(false);
 
   useEffect(() => {
     i18n.changeLanguage(languageState);
-  }, [languageState]);
+  }, [languageState, i18n]);
 
   const handleChangeLanguage = useCallback(
     (event: SyntheticEvent<HTMLDivElement>) => {
@@ -48,6 +45,10 @@ const Navigation = memo<Props>(({onLinkHover, location}) => {
     },
     [onLinkHover],
   );
+
+  const handleChangeMenuState = state => {
+    setIsMenuActiveState(state);
+  };
 
   const setRoutes = useMemo(() => {
     return [
@@ -73,57 +74,90 @@ const Navigation = memo<Props>(({onLinkHover, location}) => {
   console.log('%cRender Navigation', 'color: green');
 
   return (
-    <header className="navigation">
-      <div className="navigation__item"></div>
+    <>
+      <header
+        style={{
+          borderColor: colorFieldByLocation.secondaryColor,
+        }}
+        className="navigation">
+        <div className="navigation__item navigation__burger-item">
+          <ButtonBurger
+            onStateChanged={handleChangeMenuState}
+            color={colorFieldByLocation.secondaryColor}
+            state={isMenuActiveState}
+          />
+        </div>
 
-      <div className="navigation__item">
-        {React.Children.toArray(
-          setRoutes.map((route, i) => (
-            /* eslint react/jsx-key: "off" */
-            <NavigationLink
-              style={{
-                color: colorFieldByLocation.textColor,
-                hoverColor: colorFieldByLocation.secondaryColor,
-              }}
-              exact
-              to={route.path}
-              text={route.name}
-              activeClassName="isActive"
-              onMouseEnter={() => handleLinkHover(route.path)}
-              onMouseLeave={() => handleLinkHover(null)}
-              className={`btn-inline_active_double`}
-              classNameLink={`animated zoomIn navigation__links navigation_delay_${i} ${
-                i === setRoutes.length - 1 ? 'navigation__links-last' : ''
-              }`}
-            />
-          )),
-        )}
-      </div>
+        <div className="navigation__item">
+          {React.Children.toArray(
+            setRoutes.map((route, i) => (
+              /* eslint react/jsx-key: "off" */
+              <NavigationLink
+                style={{
+                  color: colorFieldByLocation.textColor,
+                  activeColor: colorFieldByLocation.secondaryColor,
+                  hoverColor: colorFieldByLocation.secondaryColor,
+                }}
+                exact
+                to={route.path}
+                text={route.name}
+                activeClassName="isActive"
+                onMouseEnter={() => handleLinkHover(route.path)}
+                onMouseLeave={() => handleLinkHover(null)}
+                className={`btn-inline_active_double`}
+                classNameLink={`animated zoomIn navigation__links navigation_delay_${i} ${
+                  i === setRoutes.length - 1 ? 'navigation__links-last' : ''
+                }`}
+              />
+            )),
+          )}
+        </div>
 
-      <div className="navigation__item">
-        <ButtonInline
-          style={{
-            color: colorFieldByLocation.textColor,
-            hoverColor: colorFieldByLocation.secondaryColor,
-          }}
-          text="ru"
-          className={`animated zoomIn navigation_delay_4 navigation__lng-btn`}
-          onClick={handleChangeLanguage}
-          isActive={languageState === 'ru'}
+        <div style={{}} className="navigation__item">
+          <ButtonInline
+            style={{
+              color: colorFieldByLocation.textColor,
+              hoverColor: colorFieldByLocation.secondaryColor,
+              activeColor: colorFieldByLocation.secondaryColor,
+            }}
+            text="ru"
+            className={`animated zoomIn navigation_delay_4 navigation__lng-btn`}
+            onClick={handleChangeLanguage}
+            isActive={languageState === 'ru'}
+          />
+
+          <ButtonInline
+            style={{
+              color: colorFieldByLocation.textColor,
+              hoverColor: colorFieldByLocation.secondaryColor,
+              activeColor: colorFieldByLocation.secondaryColor,
+            }}
+            text="en"
+            className={`animated zoomIn navigation_delay_5 navigation__lng-btn`}
+            onClick={handleChangeLanguage}
+            isActive={languageState === 'en'}
+          />
+        </div>
+      </header>
+
+      <SideMenu
+        isActive={isMenuActiveState}
+        animationType="slideLeft"
+        style={{
+          mainContainer: {
+            backgroundColor: colorFieldByLocation.primaryColor,
+            borderRightStyle: 'solid',
+            borderRightWidth: 2,
+            borderRightColor: colorFieldByLocation.secondaryColor,
+          },
+        }}>
+        <NavigationMenuContent
+          routes={setRoutes}
+          colors={colorFieldByLocation}
+          onMenuClose={handleChangeMenuState}
         />
-
-        <ButtonInline
-          style={{
-            color: colorFieldByLocation.textColor,
-            hoverColor: colorFieldByLocation.secondaryColor,
-          }}
-          text="en"
-          className={`animated zoomIn navigation_delay_5 navigation__lng-btn`}
-          onClick={handleChangeLanguage}
-          isActive={languageState === 'en'}
-        />
-      </div>
-    </header>
+      </SideMenu>
+    </>
   );
 });
 

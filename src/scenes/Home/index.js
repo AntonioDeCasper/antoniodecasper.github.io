@@ -1,6 +1,6 @@
 //@flow
 import * as React from 'react';
-import {ThemeContext} from '../../store';
+import {useTheme} from '../../store';
 import {useTranslation} from 'react-i18next';
 
 //Import ICONS
@@ -15,7 +15,6 @@ import {withLink} from '../../hoc';
 
 //Import STYLES
 import './styles.css';
-import '../../libs/animate.css/animate.min.css';
 
 type Props = {|
   className?: string,
@@ -58,11 +57,9 @@ const textList = [
 const HomePage = React.memo<Props>(({className}) => {
   const classNames = ['page-content page-home', className].join(' ');
   const {t} = useTranslation('home');
-  const {primaryColor, secondaryColor, textColor} = React.useContext(
-    ThemeContext,
-  ).colors.home;
+  const {primaryColor, secondaryColor, textColor} = useTheme().colors.home;
 
-  const {pageTransition} = React.useContext(ThemeContext).variables;
+  const {pageTransition} = useTheme().variables;
 
   const [isRenderState, setIsRenderState] = React.useState<boolean>(false);
 
@@ -74,7 +71,7 @@ const HomePage = React.memo<Props>(({className}) => {
     return () => {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [pageTransition]);
 
   console.log('%cRender HomePage', 'color: green');
 
@@ -100,8 +97,8 @@ const HomePage = React.memo<Props>(({className}) => {
     <div style={styles.pageHome} className={classNames}>
       {isRenderState && (
         <div className="page-content__container">
-          <div className="page-content__box"></div>
-          <div className="page-content__box page-content__box_size_double">
+          <div className="page-home__container"></div>
+          <div className="page-home__container page-home__container-double">
             <div className="page-home__hello-box">
               <div className="animated bounceInDown text-common text-common_tt_uppercase text-common_fz_medium">
                 {t('Welcome')}

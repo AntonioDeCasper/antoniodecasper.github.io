@@ -1,17 +1,18 @@
 // @flow
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-  useMemo,
-  useContext,
-} from 'react';
+import React, {useEffect, useState, useCallback, useMemo} from 'react';
 import {Switch, Route, useLocation, Redirect} from 'react-router-dom';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
-import {ThemeContext} from '../store';
+import {useTheme, useWindowDimension} from '../store';
+import 'animate.css';
+import 'normalize.css';
 
 //Import COMPONENTS
-import {NavigationView, Navigation, PageTransition} from '../components';
+import {
+  NavigationView,
+  Navigation,
+  PageTransition,
+  Ribbon,
+} from '../components';
 
 //Import SCENES
 import HomePage from './Home';
@@ -21,12 +22,12 @@ import PortfolioPage from './Portfolio';
 
 //Import STYLES
 import './styles.css';
-import '../libs/normalize.css/normalize.css';
 
 const App = () => {
   let location = useLocation();
-  const {pageTransition} = useContext(ThemeContext).variables;
-  const {colors} = useContext(ThemeContext);
+  const {pageTransition} = useTheme().variables;
+  const {width} = useWindowDimension();
+  const {colors} = useTheme();
 
   const [linkRouteOnHoverState, setLinkRouteOnHoverState] = useState<?string>(
     null,
@@ -103,6 +104,13 @@ const App = () => {
                 />
               </>
             </CSSTransition>
+
+            <Ribbon
+              className={`animated ${
+                width ? (width > 768 ? 'rotateInDownLeft' : 'slideInUp') : ''
+              } `}
+              text="in development"
+            />
 
             <NavigationView
               route={
