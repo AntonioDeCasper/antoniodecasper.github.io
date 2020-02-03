@@ -1,7 +1,7 @@
 //@flow
 import React, {memo, useEffect, useState, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useTheme, useWindowDimension} from '../../store';
+import {useTheme} from '../../context';
 
 //Import COMPONENTS
 import {GoogleMap, TextBackline} from '../../components';
@@ -21,7 +21,6 @@ const AboutPage = memo<Props>(({className}) => {
   const {t} = useTranslation('about');
   const {primaryColor, secondaryColor, textColor} = useTheme().colors.about;
   const {pageTransition} = useTheme().variables;
-  const {width} = useWindowDimension();
 
   const [isRenderState, setIsRenderState] = useState<boolean>(false);
   const [activeTabIndexState, setActiveTabIndexState] = useState<number>(0);

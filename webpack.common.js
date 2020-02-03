@@ -1,4 +1,3 @@
-// const webpack = require("webpack");
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -11,19 +10,21 @@ const CUSTOM_LIBRARIES = [
   path.resolve(__dirname, 'node_modules/animate.css/'), //animate.css
   path.resolve(__dirname, 'node_modules/normalize.css/'), //normalize.css
 ];
+const NO_ORIGINAL_IMAGES = [
+  path.resolve(__dirname, 'src/assets/images/original'),
+];
 
 // Any directories you will be adding code/files into, need to be
 // added to this array so webpack will pick them up
 const defaultInclude = [SRC_DIR];
 
 module.exports = {
-  mode: 'development',
-  //target: "electron-renderer",
-  //entry: ["@babel/polyfill", SRC_DIR + "/index.js"],
   entry: `${SRC_DIR}/index.js`,
   output: {
+    // filename: 'bundle.js',
+    filename: '[hash].[name].bundle.js',
+    chunkFilename: '[hash].[name].bundle.js',
     path: OUTPUT_DIR,
-    filename: 'bundle.js',
   },
 
   module: {
@@ -59,6 +60,7 @@ module.exports = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: [{loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]'}],
         include: defaultInclude,
+        exclude: NO_ORIGINAL_IMAGES,
       },
     ],
   },
@@ -82,19 +84,4 @@ module.exports = {
     //   }
     // ])
   ],
-
-  devtool: 'source-map',
-  // devtool: "eval",
-  devServer: {
-    contentBase: OUTPUT_DIR,
-    port: 3000,
-    host: '0.0.0.0',
-    hot: true,
-    historyApiFallback: true, // this will let you use React router for SPA in dev
-    stats: {
-      colors: true,
-      chunks: false,
-      children: false,
-    },
-  },
 };

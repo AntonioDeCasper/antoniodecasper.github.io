@@ -1,7 +1,7 @@
 //@flow
 import React, {useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useTheme} from '../../store';
+import {useTheme} from '../../context';
 
 //Import ICONS
 import {FaTelegramPlane} from 'react-icons/fa';

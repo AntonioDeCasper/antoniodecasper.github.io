@@ -1,5 +1,5 @@
 //@flow
-import React, {memo, useState, useEffect} from 'react';
+import React, {memo, useState} from 'react';
 
 //Import STYLES
 import './styles.css';
@@ -14,10 +14,12 @@ type Props = {|
   icon?: React$Element<'svg'>,
   animationType?: 'position-aware' | 'swipe-left',
   type?: 'button' | 'submit' | 'tag',
-  isToggleable?: boolean,
-  onToggle?: boolean => void,
   isToggled?: boolean,
-  onClick?: () => void,
+  onClick?: (
+    SyntheticEvent<HTMLButtonElement>,
+    ?({[string]: boolean} | boolean),
+  ) => void,
+  name?: string | number,
 |};
 
 const Button = memo<Props>(
@@ -31,10 +33,9 @@ const Button = memo<Props>(
     type,
     style,
     activeStyle,
-    isToggleable,
-    onToggle,
     isToggled,
     onClick,
+    name,
   }) => {
     const classNames = [
       'button',
@@ -52,15 +53,10 @@ const Button = memo<Props>(
       width: number,
       height: number,
     }>({width: 0, height: 0});
-    const [hoverState, setHoverState] = useState<boolean>(false);
-    const [toggleState, setToggleState] = useState<boolean>(false);
+    const [isHoverState, setIsHoverState] = useState<boolean>(false);
 
-    useEffect(() => {
-      onToggle && onToggle(toggleState);
-    }, [toggleState]);
-
-    const handleMouseHover = (event, hoverState) => {
-      setHoverState(hoverState);
+    const handleMouseHover = (event, isHoverState) => {
+      setIsHoverState(isHoverState);
 
       if (animationType === 'position-aware') {
         const absoluteMousePosition = {x: event.clientX, y: event.clientY};
@@ -120,9 +116,16 @@ const Button = memo<Props>(
       }
     };
 
-    const handleClick = () => {
-      isToggleable && setToggleState(prevState => !prevState);
-      !isToggleable && onClick && onClick();
+    const handleClick = (e: SyntheticEvent<HTMLButtonElement>) => {
+      onClick &&
+        onClick(
+          e,
+          isToggled !== null && isToggled !== undefined
+            ? name
+              ? {[name]: isToggled}
+              : isToggled
+            : undefined,
+        );
     };
 
     const styles = {
@@ -140,7 +143,7 @@ const Button = memo<Props>(
       <button
         style={{
           ...style,
-          ...(activeStyle && (hoverState || isToggled) ? activeStyle : {}),
+          ...(activeStyle && (isHoverState || isToggled) ? activeStyle : {}),
         }}
         className={classNames}
         type={type ? type : 'button'}

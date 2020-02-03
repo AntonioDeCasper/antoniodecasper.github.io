@@ -11,14 +11,13 @@
   display: flex;
 }
 
-.navigation__links {
-  text-transform: uppercase;
+.navigation__link {
   letter-spacing: 2px;
-  margin-right: 40px;
+  text-transform: uppercase;
 }
 
-.navigation__links-last {
-  margin-right: 0 !important;
+.navigation__link + .navigation__link {
+  margin-left: 40px;
 }
 
 .navigation__lng-btn {
@@ -48,7 +47,7 @@
 /* MEDIA */
 
 @media only screen and (max-width: 992px) {
-  .navigation__links {
+  .navigation__link {
     margin-right: 30px;
     font-size: 14px;
   }

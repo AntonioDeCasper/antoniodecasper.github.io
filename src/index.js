@@ -2,7 +2,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
-import {Provider} from './store';
+import {Provider} from './context';
 import './i18n';
 
 //import CSS styles

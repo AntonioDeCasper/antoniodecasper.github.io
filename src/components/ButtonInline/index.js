@@ -59,6 +59,10 @@ const ButtonInline = memo<Props>(
       return {};
     };
 
+    const handleKeyPress = (e: SyntheticKeyboardEvent<HTMLDivElement>) => {
+      e.preventDefault();
+    };
+
     console.log('%cRender ButtonInline', 'color: green');
 
     return (
@@ -67,6 +71,10 @@ const ButtonInline = memo<Props>(
           ...(style && style.color ? {color: style.color} : {}),
           ...setTextColor(),
         }}
+        tabIndex={-1}
+        onKeyDown={handleKeyPress}
+        onKeyPress={handleKeyPress}
+        role={'button'}
         onMouseEnter={() => handleMouseHover(true)}
         onMouseLeave={() => handleMouseHover(false)}
         onClick={onClick}

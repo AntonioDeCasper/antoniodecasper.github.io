@@ -1,6 +1,6 @@
 //@flow
 import React, {memo, useState, useEffect} from 'react';
-import {useTheme} from '../../store';
+import {useTheme} from '../../context';
 import {useTranslation} from 'react-i18next';
 import capitalize from 'lodash/capitalize';
 

@@ -1,7 +1,7 @@
 //@flow
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useTheme, useGlobalState, useDispatch} from '../../store';
+import {useTheme, useGlobalState, useDispatch} from '../../context';
 
 //Import COMPONENTS
 import {Button, ScrollBox, SideMenu, TextBackline} from '../../components';
@@ -75,21 +75,35 @@ const PortfolioPage = ({className}: Props) => {
     }
   }, [toggledTagsState]);
 
-  const handleToggle = (index, state) => {
-    let newTagsStates = [...toggledTagsState];
-    newTagsStates[index].state = state;
-    setToggledTagsState(newTagsStates);
-  };
+  const handleTagClick = useCallback(
+    (e, state) => {
+      let newTagsStates = [...toggledTagsState];
+
+      for (const key in state) {
+        const value = state[key];
+
+        if (!Number.isNaN(key)) {
+          newTagsStates[Number(key)].state = !value;
+        }
+      }
+
+      setToggledTagsState(newTagsStates);
+    },
+    [toggledTagsState],
+  );
 
   const handleProjectClick = (config, index) => {
     openProjectMenu(PROJECTS[index]);
   };
 
-  const handleChangeMenuState = state => {
-    !state && closeProjectMenu();
-  };
+  const handleChangeMenuState = useCallback(
+    state => {
+      !state && closeProjectMenu();
+    },
+    [closeProjectMenu],
+  );
 
-  const handleToggleFilterBtn = () => {
+  const handleToggleFiltersPopup = useCallback(() => {
     let filterMenuOffset = 0;
 
     if (!filterMenuState.state && contentContainerRef.current) {
@@ -101,7 +115,7 @@ const PortfolioPage = ({className}: Props) => {
       state: !prevState.state,
       offset: filterMenuOffset,
     }));
-  };
+  }, [filterMenuState.state]);
 
   console.log('%cRender Portfolio Page', 'color: green');
 
@@ -188,7 +202,7 @@ const PortfolioPage = ({className}: Props) => {
                   <Button
                     className="page-portfolio__tags-filter-btn"
                     text="Filters"
-                    onClick={handleToggleFilterBtn}
+                    onClick={handleToggleFiltersPopup}
                     activeStyle={{
                       backgroundColor: secondaryColor,
                       color: textColor,
@@ -213,11 +227,11 @@ const PortfolioPage = ({className}: Props) => {
 
                     {TAGS.map((tag, index) => (
                       <Button
-                        isToggleable
                         isToggled={toggledTagsState[index].state}
-                        onToggle={state => handleToggle(index, state)}
+                        onClick={handleTagClick}
                         className={`page-portfolio__tag-selector animated flipInX`}
-                        key={index}
+                        key={tag}
+                        name={`${index}`}
                         text={tag}
                         theme="tag"
                         style={{
@@ -234,7 +248,7 @@ const PortfolioPage = ({className}: Props) => {
                     <Button
                       className="page-portfolio__tags-filter-btn"
                       text="Close"
-                      onClick={handleToggleFilterBtn}
+                      onClick={handleToggleFiltersPopup}
                       style={{
                         borderColor: secondaryColor,
                         color: secondaryColor,

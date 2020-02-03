@@ -2,20 +2,21 @@
 import React, {useState, useEffect} from 'react';
 import {Formik} from 'formik';
 import {useTranslation} from 'react-i18next';
-import {useTheme, useWindowDimension} from '../../store';
+import {useTheme, useWindowDimension} from '../../context';
 
 //Import COMPONENTS
 import {Link, Button} from '../../components';
 import {InputWithValidation} from '../../hoc';
 
-//Import HOOKS
+//Import HOOKS/UTILS
 import {useContactInfo} from './hooks';
+import {LightenDarkenColor} from '../../utils';
 
 //Import LIBS
 import {ContactSchema} from '../../validation';
 
 //Import CONSTANTS
-import {INPUT_DEFAULT_STYLES, SOCIAL_LINKS} from './constants';
+import {SOCIAL_LINKS} from './constants';
 
 //Import STYLES
 import './styles.css';
@@ -63,8 +64,31 @@ const ContactPage = ({className}: Props) => {
     },
   };
 
-  const handleSubmitFormik = (values, actions) => {
-    console.log('handleSubmitFormik');
+  const inputDefaultStyles = {
+    field: {
+      borderColor: secondaryColor,
+      color: textColor,
+    },
+    placeholder: {
+      color: LightenDarkenColor(primaryColor, 40),
+    },
+    placeholderFocused: {
+      color: secondaryColor,
+    },
+  };
+
+  const handleSubmitFormik = values => {
+    fetch('https://mailthis.to/AntonioDeCasper', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(values),
+    })
+      .then(() => {
+        window.location.href = 'https://mailthis.to/confirm';
+      })
+      .catch(error => {
+        console.log('error: ', error);
+      });
   };
 
   console.log('%cRender ContactPage', 'color: green');
@@ -163,7 +187,7 @@ const ContactPage = ({className}: Props) => {
                         value={props.values.firstName}
                         name="firstName"
                         placeholder={t('FirstName')}
-                        styles={INPUT_DEFAULT_STYLES}
+                        styles={inputDefaultStyles}
                         className="page-contact__form-name animated flipInX"
                         errors={props.errors.firstName}
                         touched={props.touched.firstName}
@@ -176,7 +200,7 @@ const ContactPage = ({className}: Props) => {
                         value={props.values.email}
                         name="email"
                         placeholder={t('Email')}
-                        styles={INPUT_DEFAULT_STYLES}
+                        styles={inputDefaultStyles}
                         className="page-contact__form-email animated flipInX"
                         errors={props.errors.email}
                         touched={props.touched.email}
@@ -191,7 +215,7 @@ const ContactPage = ({className}: Props) => {
                         value={props.values.message}
                         name="message"
                         placeholder={t('Message')}
-                        styles={INPUT_DEFAULT_STYLES}
+                        styles={inputDefaultStyles}
                         errors={props.errors.message}
                         touched={props.touched.message}
                         className="animated zoomIn"

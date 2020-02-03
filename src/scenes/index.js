@@ -1,8 +1,14 @@
 // @flow
-import React, {useEffect, useState, useCallback, useMemo} from 'react';
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  Suspense,
+} from 'react';
 import {Switch, Route, useLocation, Redirect} from 'react-router-dom';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
-import {useTheme, useWindowDimension} from '../store';
+import {useTheme, useWindowDimension} from '../context';
 import 'animate.css';
 import 'normalize.css';
 
@@ -15,10 +21,10 @@ import {
 } from '../components';
 
 //Import SCENES
-import HomePage from './Home';
-import AboutPage from './About';
-import ContactPage from './Contact';
-import PortfolioPage from './Portfolio';
+const HomePage = React.lazy(() => import('./Home'));
+const AboutPage = React.lazy(() => import('./About'));
+const ContactPage = React.lazy(() => import('./Contact'));
+const PortfolioPage = React.lazy(() => import('./Portfolio'));
 
 //Import STYLES
 import './styles.css';
@@ -74,23 +80,25 @@ const App = () => {
               timeout={pageTransition}
               classNames="switch-page">
               <>
-                <Switch location={location}>
-                  <Route path="/about">
-                    <AboutPage />
-                  </Route>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Switch location={location}>
+                    <Route path="/about">
+                      <AboutPage />
+                    </Route>
 
-                  <Route path="/contact">
-                    <ContactPage />
-                  </Route>
+                    <Route path="/contact">
+                      <ContactPage />
+                    </Route>
 
-                  <Route path="/portfolio">
-                    <PortfolioPage />
-                  </Route>
+                    <Route path="/portfolio">
+                      <PortfolioPage />
+                    </Route>
 
-                  <Route path="/">
-                    <HomePage />
-                  </Route>
-                </Switch>
+                    <Route path="/">
+                      <HomePage />
+                    </Route>
+                  </Switch>
+                </Suspense>
 
                 <PageTransition
                   style={{

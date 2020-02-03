@@ -1,7 +1,7 @@
 //@flow
 import React, {memo} from 'react';
 import ImageGallery from 'react-image-gallery';
-import {useTheme, useDispatch} from '../../../../store';
+import {useTheme, useDispatch} from '../../../../context';
 import {useTranslation} from 'react-i18next';
 
 //Import COMPONENTS

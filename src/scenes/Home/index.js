@@ -1,6 +1,6 @@
 //@flow
 import * as React from 'react';
-import {useTheme} from '../../store';
+import {useTheme} from '../../context';
 import {useTranslation} from 'react-i18next';
 
 //Import ICONS

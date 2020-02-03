@@ -1,7 +1,7 @@
 /* @flow */
 import React, {memo, useState, useEffect, useCallback, useMemo} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useWindowDimension, useTheme} from '../../store';
+import {useTheme} from '../../context';
 
 //Import COMPONENTS
 import NavigationLink from './components/NavigationLink';
@@ -14,9 +14,7 @@ import './styles.css';
 type Props = {|onLinkHover: (?string) => void, location: Object|};
 
 const Navigation = memo<Props>(({onLinkHover, location}) => {
-  const {width} = useWindowDimension();
   const {colors} = useTheme();
-  const {pageTransition} = useTheme().variables;
   const {t, i18n} = useTranslation('routes');
   const colorFieldByLocation =
     colors[
@@ -105,9 +103,7 @@ const Navigation = memo<Props>(({onLinkHover, location}) => {
                 onMouseEnter={() => handleLinkHover(route.path)}
                 onMouseLeave={() => handleLinkHover(null)}
                 className={`btn-inline_active_double`}
-                classNameLink={`animated zoomIn navigation__links navigation_delay_${i} ${
-                  i === setRoutes.length - 1 ? 'navigation__links-last' : ''
-                }`}
+                classNameLink={`animated zoomIn navigation__link navigation_delay_${i}`}
               />
             )),
           )}

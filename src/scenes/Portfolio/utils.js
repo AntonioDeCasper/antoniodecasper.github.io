@@ -1,6 +1,6 @@
 //@flow
 import React from 'react';
-import {useWindowDimension} from '../../store';
+import {useWindowDimension} from '../../context';
 
 //Import ICONS
 import {FaCss3, FaHtml5, FaReact} from 'react-icons/fa';

@@ -1,12 +1,14 @@
 {
   "name": "myfreelancesite",
-  "version": "0.8.5",
+  "version": "0.9.0",
   "description": "My personal site by Anton Gribenkov antongribenkov@gmail.com",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "start-light": "webpack-dev-server",
-    "build": "webpack",
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "start-light": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.dev.js",
+    "build-prod": "webpack --config webpack.prod.js",
+    "clean-build": "",
     "flow": "flow"
   },
   "author": "Gribenkov Anton",
@@ -50,6 +52,7 @@
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2"
+    "webpack-dev-server": "^3.8.2",
+    "webpack-merge": "^4.2.2"
   }
 }
