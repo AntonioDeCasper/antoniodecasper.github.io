@@ -1,0 +1,94 @@
+.initial-loader {
+  background-color: #212121;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: opacity ease-in-out 0.5s, top linear 0s 0.5s;
+  opacity: 1;
+}
+
+.initial-loader.isDone {
+  opacity: 0;
+  top: 100%;
+}
+
+.initial-loader__letter {
+  font-size: 100px;
+  color: #fff;
+  font-family: 'Montserrat-Medium';
+  font-weight: bold;
+}
+
+.initial-loader__letter + .initial-loader__letter {
+  margin-left: 10px;
+}
+
+.initial-loader__dots {
+  letter-spacing: 10px;
+}
+
+.initial-loader__circle-main,
+.initial-loader__circle-middle,
+.initial-loader__circle-inner {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.initial-loader__circle-main {
+  height: 100px;
+  width: 100px;
+  background-color: #fbc02d;
+  margin: 0 10px;
+}
+
+.initial-loader__circle-middle {
+  height: 50%;
+  width: 50%;
+  background-color: #212121;
+  animation-name: animateMiddleCircle;
+  animation-duration: 500ms;
+}
+.initial-loader__circle-inner {
+  height: 25%;
+  width: 25%;
+  background-color: #fbc02d;
+  animation-name: animateInnerCircle;
+  animation-duration: 1s;
+}
+
+.initial-loader__circle-middle,
+.initial-loader__circle-inner {
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes animateMiddleCircle {
+  to {
+    height: 90%;
+    width: 90%;
+  }
+}
+
+@keyframes animateInnerCircle {
+  to {
+    height: 90%;
+    width: 90%;
+  }
+}
+
+/* FONTS */
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: local('Montserrat-Medium'),
+    url('./font/Montserrat-Medium.ttf') format('ttf');
+}
