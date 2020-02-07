@@ -18,6 +18,7 @@ import {
   Navigation,
   PageTransition,
   Ribbon,
+  Loader,
 } from '../components';
 
 //Import SCENES
@@ -49,19 +50,35 @@ const App = () => {
     //   });
     // };
     // i18n.changeLanguage('ru');
+    console.log('MOUNTED!!!');
+    const element = document.getElementById('page-loader');
+
+    if (element) {
+      element.className = element.className.concat(' isDone');
+    }
   }, []);
 
   const handleOnLinkHover = useCallback(route => {
     setLinkRouteOnHoverState(route);
   }, []);
 
-  console.log('%cRender App', 'color: green');
-
   const checkRoutes = useMemo(() => {
     const acceptedRoutes = new Set(['/', '/about', '/portfolio', '/contact']);
 
     return acceptedRoutes.has(location.pathname);
   }, [location.pathname]);
+
+  const setColorsByRoute = useMemo(
+    () =>
+      colors[
+        location.pathname.split('/')[1]
+          ? location.pathname.split('/')[1]
+          : 'home'
+      ],
+    [location.pathname, colors],
+  );
+
+  console.log('%cRender App', 'color: green');
 
   return (
     <Route
@@ -71,7 +88,12 @@ const App = () => {
         }
 
         return (
-          <TransitionGroup className="page">
+          <TransitionGroup
+            style={{
+              backgroundColor: setColorsByRoute.primaryColor,
+              transitionDelay: `${pageTransition}ms`,
+            }}
+            className="page">
             <Navigation location={location} onLinkHover={handleOnLinkHover} />
 
             <CSSTransition
@@ -80,7 +102,8 @@ const App = () => {
               timeout={pageTransition}
               classNames="switch-page">
               <>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense
+                  fallback={<Loader color={setColorsByRoute.secondaryColor} />}>
                   <Switch location={location}>
                     <Route path="/about">
                       <AboutPage />
@@ -102,12 +125,7 @@ const App = () => {
 
                 <PageTransition
                   style={{
-                    backgroundColor:
-                      colors[
-                        location.pathname.split('/')[1]
-                          ? location.pathname.split('/')[1]
-                          : 'home'
-                      ].primaryColor,
+                    backgroundColor: setColorsByRoute.primaryColor,
                   }}
                 />
               </>

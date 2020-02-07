@@ -1,18 +1,23 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HtmlWebpackDeployPlugin = require('html-webpack-deploy-plugin');
+
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
 // Config directories
 const ROOT_DIR = path.resolve(__dirname);
 const SRC_DIR = path.resolve(__dirname, 'src');
 const OUTPUT_DIR = path.resolve(__dirname, 'build');
-const CUSTOM_LIBRARIES = [
-  path.resolve(__dirname, 'node_modules/react-image-gallery/styles'), //react-image-gallery
-  path.resolve(__dirname, 'node_modules/animate.css/'), //animate.css
-  path.resolve(__dirname, 'node_modules/normalize.css/'), //normalize.css
-];
 const NO_ORIGINAL_IMAGES = [
   path.resolve(__dirname, 'src/assets/images/original'),
 ];
+const PRELOADER = path.resolve(__dirname, 'src/preloader.css');
+const PRELOADER_FONT = path.resolve(
+  __dirname,
+  'src/assets/fonts/Montserrat-Medium.ttf',
+);
 
 // Any directories you will be adding code/files into, need to be
 // added to this array so webpack will pick them up
@@ -22,19 +27,13 @@ module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
     // filename: 'bundle.js',
-    filename: '[hash].[name].bundle.js',
-    chunkFilename: '[hash].[name].bundle.js',
+    filename: '[name].[hash].bundle.js',
+    chunkFilename: '[name].[hash].bundle.js',
     path: OUTPUT_DIR,
   },
 
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: [{loader: 'style-loader'}, {loader: 'css-loader'}],
-        include: [...defaultInclude, ...CUSTOM_LIBRARIES],
-      },
-
       {
         test: /\.js?$/,
         use: {
@@ -54,13 +53,13 @@ module.exports = {
         test: /\.(jpe?g|png|gif)$/,
         use: [{loader: 'file-loader?name=img/[name]__[hash:base64:5].[ext]'}],
         include: defaultInclude,
+        exclude: NO_ORIGINAL_IMAGES,
       },
 
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: [{loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]'}],
         include: defaultInclude,
-        exclude: NO_ORIGINAL_IMAGES,
       },
     ],
   },
@@ -68,20 +67,33 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: ROOT_DIR + '/index.html',
-      inject: 'body',
+      chunksSortMode: 'none',
     }),
-
-    // new webpack.DefinePlugin({
-    //   "process.env.NODE_ENV": JSON.stringify("development")
-    // }),
-
-    // new WriteFilePlugin(),
-
-    // new CopyPlugin([
+    new HtmlWebpackDeployPlugin({
+      assets: {
+        copy: [{from: 'src/preloader.css', to: ''}],
+        links: ['preloader.css'],
+      },
+      useAssetsPath: false,
+    }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        '*.js',
+        '*.js.map',
+        '*.html',
+        '*.css',
+        '*.txt',
+      ],
+      // cleanOnceBeforeBuildPatterns: ['**/*', '!static-files*'],
+    }),
+    // new HtmlWebpackTagsPlugin({tags: ['preloader.css'], append: true}),
+    // new CopyWebpackPlugin([
     //   {
-    //     from: `buildResources/bindings/${setBindingFileFolder()}/bindings.node`,
-    //     to: ""
-    //   }
-    // ])
+    //     from: PRELOADER,
+    //   },
+    //   {
+    //     from: PRELOADER_FONT,
+    //   },
+    // ]),
   ],
 };

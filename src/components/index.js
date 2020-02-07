@@ -13,6 +13,7 @@ import SideMenu from './SideMenu';
 import Ribbon from './Ribbon';
 import ButtonBurger from './ButtonBurger';
 import TextBackline from './TextBackline';
+import Loader from './Loader';
 
 export {
   NavigationView,
@@ -30,4 +31,5 @@ export {
   Ribbon,
   ButtonBurger,
   TextBackline,
+  Loader,
 };

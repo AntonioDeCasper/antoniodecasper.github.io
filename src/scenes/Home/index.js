@@ -77,7 +77,6 @@ const HomePage = React.memo<Props>(({className}) => {
 
   const styles = {
     pageHome: {
-      backgroundColor: primaryColor,
       color: textColor,
     },
     buttonAbout: {

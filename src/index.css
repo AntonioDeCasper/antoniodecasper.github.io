@@ -197,30 +197,13 @@ p {
 @media only screen and (max-width: 320px) {
 }
 
-/*PAGE ANIMATIONS*/
-/* .switch-page-enter {
-}
-.switch-page-enter:before {
-}
-.switch-page-enter-active:before {
-}
-.switch-page-enter-done {
-} */
-
-.switch-page-exit {
-  z-index: 2;
-}
-
-.switch-page-enter {
-  z-index: 1;
-}
-
 /* FONTS */
 @font-face {
   font-family: 'Roboto-Regular';
   src: local('Roboto-Regular'),
     url('./assets/fonts/Roboto-Regular.ttf') format('ttf');
 }
+
 @font-face {
   font-family: 'Roboto-Medium';
   src: local('Roboto-Medium'),

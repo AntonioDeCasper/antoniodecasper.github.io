@@ -121,7 +121,6 @@ const PortfolioPage = ({className}: Props) => {
 
   const styles = {
     pageContainer: {
-      backgroundColor: primaryColor,
       color: textColor,
     },
     socialLink: {
