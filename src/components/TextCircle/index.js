@@ -17,7 +17,12 @@ type Props = {|
   startAnimation?: boolean,
 |};
 
-const TextCircle = ({className, text, options, startAnimation}: Props) => {
+export const TextCircle = ({
+  className,
+  text,
+  options,
+  startAnimation,
+}: Props) => {
   const classNames = [
     'text-circle',
     startAnimation ? 'isActive' : '',
@@ -61,5 +66,3 @@ const TextCircle = ({className, text, options, startAnimation}: Props) => {
     </div>
   );
 };
-
-export default TextCircle;

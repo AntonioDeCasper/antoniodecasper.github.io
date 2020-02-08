@@ -18,19 +18,19 @@ import {
   Navigation,
   PageTransition,
   Ribbon,
-  Loader,
+  LoaderOrbit,
 } from '../components';
 
 //Import SCENES
 const HomePage = React.lazy(() => import('./Home'));
 const AboutPage = React.lazy(() => import('./About'));
-const ContactPage = React.lazy(() => import('./Contact'));
+const ContactPage = React.lazy(() => import('./Contact/index'));
 const PortfolioPage = React.lazy(() => import('./Portfolio'));
 
 //Import STYLES
 import './styles.css';
 
-const App = () => {
+export const App = () => {
   let location = useLocation();
   const {pageTransition} = useTheme().variables;
   const {width} = useWindowDimension();
@@ -39,18 +39,9 @@ const App = () => {
   const [linkRouteOnHoverState, setLinkRouteOnHoverState] = useState<?string>(
     null,
   );
+  const [transitionState, setTransitionState] = useState<boolean>(false);
 
   useEffect(() => {
-    // document.addEventListener('DOMContentLoaded', () => {
-    //   console.log('FIRE: ', document);
-    // });
-    // return function clean() {
-    //   document.removeEventListener('DOMContentLoaded', () => {
-    //     console.log('removed');
-    //   });
-    // };
-    // i18n.changeLanguage('ru');
-    console.log('MOUNTED!!!');
     const element = document.getElementById('page-loader');
 
     if (element) {
@@ -78,6 +69,16 @@ const App = () => {
     [location.pathname, colors],
   );
 
+  const handleOnEnterAnimation = () => {
+    console.log('handleOnEnterAnimation');
+    setTransitionState(true);
+  };
+
+  const handleOnExitedAnimation = () => {
+    console.log('handleOnExitedAnimation');
+    setTransitionState(false);
+  };
+
   console.log('%cRender App', 'color: green');
 
   return (
@@ -98,12 +99,18 @@ const App = () => {
 
             <CSSTransition
               //in={isAnimationActive}
+              onEntering={handleOnEnterAnimation}
+              onExited={handleOnExitedAnimation}
               key={location.key}
               timeout={pageTransition}
               classNames="switch-page">
               <>
                 <Suspense
-                  fallback={<Loader color={setColorsByRoute.secondaryColor} />}>
+                  fallback={
+                    <div className="page__loader">
+                      <LoaderOrbit color={setColorsByRoute.secondaryColor} />
+                    </div>
+                  }>
                   <Switch location={location}>
                     <Route path="/about">
                       <AboutPage />
@@ -122,14 +129,16 @@ const App = () => {
                     </Route>
                   </Switch>
                 </Suspense>
-
-                <PageTransition
-                  style={{
-                    backgroundColor: setColorsByRoute.primaryColor,
-                  }}
-                />
               </>
             </CSSTransition>
+
+            <PageTransition
+              style={{
+                backgroundColor: setColorsByRoute.primaryColor,
+              }}
+              isActive={transitionState}
+              transitionDuration={500}
+            />
 
             <Ribbon
               className={`animated ${
@@ -151,5 +160,3 @@ const App = () => {
     />
   );
 };
-
-export default App;

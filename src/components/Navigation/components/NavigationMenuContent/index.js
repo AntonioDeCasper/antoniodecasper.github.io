@@ -2,7 +2,7 @@
 import React from 'react';
 
 //Import COMPONENTS
-import NavigationLink from '../NavigationLink';
+import {NavigationLink} from '../NavigationLink';
 
 // Import STYLES
 import './styles.css';
@@ -14,7 +14,7 @@ type Props = {|
   onMenuClose: boolean => void,
 |};
 
-const NavigationMenuContent = ({
+export const NavigationMenuContent = ({
   className,
   routes,
   colors,
@@ -48,5 +48,3 @@ const NavigationMenuContent = ({
     </div>
   );
 };
-
-export default NavigationMenuContent;

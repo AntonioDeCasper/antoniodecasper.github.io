@@ -9,7 +9,7 @@ import './i18n';
 import './index.css';
 
 //import COMPONENTS
-import App from './scenes/';
+import {App} from './scenes/';
 
 const root = document.getElementById('app');
 

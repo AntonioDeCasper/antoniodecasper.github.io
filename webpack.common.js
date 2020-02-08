@@ -1,10 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackDeployPlugin = require('html-webpack-deploy-plugin');
-
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
 // Config directories
 const ROOT_DIR = path.resolve(__dirname);
@@ -13,11 +9,6 @@ const OUTPUT_DIR = path.resolve(__dirname, 'build');
 const NO_ORIGINAL_IMAGES = [
   path.resolve(__dirname, 'src/assets/images/original'),
 ];
-const PRELOADER = path.resolve(__dirname, 'src/preloader.css');
-const PRELOADER_FONT = path.resolve(
-  __dirname,
-  'src/assets/fonts/Montserrat-Medium.ttf',
-);
 
 // Any directories you will be adding code/files into, need to be
 // added to this array so webpack will pick them up
@@ -76,24 +67,5 @@ module.exports = {
       },
       useAssetsPath: false,
     }),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [
-        '*.js',
-        '*.js.map',
-        '*.html',
-        '*.css',
-        '*.txt',
-      ],
-      // cleanOnceBeforeBuildPatterns: ['**/*', '!static-files*'],
-    }),
-    // new HtmlWebpackTagsPlugin({tags: ['preloader.css'], append: true}),
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: PRELOADER,
-    //   },
-    //   {
-    //     from: PRELOADER_FONT,
-    //   },
-    // ]),
   ],
 };

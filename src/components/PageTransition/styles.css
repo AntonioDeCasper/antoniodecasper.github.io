@@ -9,12 +9,7 @@
   z-index: -1;
 }
 
-.switch-page-enter-active + .page-transition {
+.page-transition.isActive {
   transform: scale(25);
   z-index: 10;
-}
-
-.switch-page-exit + .page-transition,
-.switch-page-enter-done + .page-transition {
-  opacity: 0;
 }

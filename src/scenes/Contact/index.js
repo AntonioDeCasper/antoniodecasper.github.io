@@ -5,7 +5,7 @@ import {useTranslation} from 'react-i18next';
 import {useTheme, useWindowDimension} from '../../context';
 
 //Import COMPONENTS
-import {Link, Button} from '../../components';
+import {Link, Button, TextBackline} from '../../components';
 import {InputWithValidation} from '../../hoc';
 
 //Import HOOKS/UTILS
@@ -103,16 +103,18 @@ const ContactPage = ({className}: Props) => {
             <span>.</span>
           </div>
 
-          <div className="paragraph text-backline page-content__second-header">
-            <div
+          <TextBackline
+            textWrapperClassName="animated bounceInRight"
+            className="paragraph"
+            options={{text: {backgroundColor: primaryColor}}}>
+            <span
+              className="text-common text-common_tt_uppercase"
               style={{
-                background: `linear-gradient( ${primaryColor} 70%, transparent)`,
-              }}
-              className="text-common text-common_tt_uppercase text-backline__text-box animated bounceInRight">
-              <span style={{color: secondaryColor}}>{t('Header')}</span>
-            </div>
-            <div className="text-backline__line"></div>
-          </div>
+                color: secondaryColor,
+              }}>
+              {t('Header')}
+            </span>
+          </TextBackline>
 
           <div className="page-contact__contacts-form">
             <div className="page-contact__contacts-block">

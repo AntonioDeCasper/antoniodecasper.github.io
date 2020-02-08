@@ -2,10 +2,10 @@
 import * as React from 'react';
 
 //Import COMPONENTS
-import Input from '../../../components/Input';
+import {Input} from '../../../components/Input';
 
 //Import HOCs
-import withValidation from '../index';
+import {withValidation} from '../index';
 
 type InjectedProps = {|
   errors?: any,
@@ -27,8 +27,7 @@ type InputProps = {|
   },
   ...InjectedProps,
 |};
-const InputWithValidation = withValidation<
+
+export const InputWithValidation = withValidation<
   React.Config<InputProps, InjectedProps>,
 >(Input);
-
-export default InputWithValidation;

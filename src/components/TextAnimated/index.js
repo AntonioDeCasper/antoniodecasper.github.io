@@ -14,7 +14,7 @@ type Props = {|
   },
 |};
 
-const TextAnimated = memo<Props>(({className, textList, delay}) => {
+export const TextAnimated = memo<Props>(({className, textList, delay}) => {
   const classNames = ['text-animated', className].join(' ');
 
   const [indexState, setIndexState] = useState<number>(0);
@@ -56,5 +56,3 @@ const TextAnimated = memo<Props>(({className, textList, delay}) => {
 });
 
 TextAnimated.displayName = 'TextAnimated';
-
-export default TextAnimated;

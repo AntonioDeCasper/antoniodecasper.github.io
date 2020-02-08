@@ -21,7 +21,7 @@ type Props = {|
   },
 |};
 
-const TextBackline = memo<Props>(
+export const TextBackline = memo<Props>(
   ({className, children, options, textWrapperClassName}) => {
     const classNames = ['text-backline', className].join(' ');
     const textWrapperClassNames = [
@@ -69,5 +69,3 @@ const TextBackline = memo<Props>(
 );
 
 TextBackline.displayName = 'TextBackline';
-
-export default TextBackline;

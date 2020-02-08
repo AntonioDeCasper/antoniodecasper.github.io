@@ -86,6 +86,45 @@
   }
 }
 
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 992px) {
+  .initial-loader__letter {
+    font-size: 60px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .initial-loader__letter {
+    font-size: 40px;
+  }
+
+  .initial-loader__letter + .initial-loader__letter {
+    margin-left: 5px;
+  }
+
+  .initial-loader__circle-main {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .initial-loader__circle-main {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .initial-loader__letter {
+    font-size: 30px;
+  }
+
+  .initial-loader__circle-main {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 /* FONTS */
 @font-face {
   font-family: 'Montserrat-Medium';

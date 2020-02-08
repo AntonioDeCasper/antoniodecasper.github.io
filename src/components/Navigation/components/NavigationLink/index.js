@@ -2,7 +2,7 @@
 import * as React from 'react';
 
 //Import COMPONENTS
-import ButtonInline from '../../../../components/ButtonInline';
+import {ButtonInline} from '../../../../components/ButtonInline';
 
 //Import HOCs
 import {withLink} from '../../../../hoc';
@@ -28,8 +28,6 @@ type Props = {|
   ...InjectedProps,
 |};
 
-const NavigationLink = withLink<React.Config<Props, InjectedProps>>(
+export const NavigationLink = withLink<React.Config<Props, InjectedProps>>(
   ButtonInline,
 );
-
-export default NavigationLink;

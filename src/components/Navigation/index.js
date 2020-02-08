@@ -4,8 +4,8 @@ import {useTranslation} from 'react-i18next';
 import {useTheme} from '../../context';
 
 //Import COMPONENTS
-import NavigationLink from './components/NavigationLink';
-import NavigationMenuContent from './components/NavigationMenuContent';
+import {NavigationLink} from './components/NavigationLink';
+import {NavigationMenuContent} from './components/NavigationMenuContent';
 import {ButtonBurger, ButtonInline, SideMenu} from '../';
 
 //Import STYLES
@@ -13,7 +13,7 @@ import './styles.css';
 
 type Props = {|onLinkHover: (?string) => void, location: Object|};
 
-const Navigation = memo<Props>(({onLinkHover, location}) => {
+export const Navigation = memo<Props>(({onLinkHover, location}) => {
   const {colors} = useTheme();
   const {t, i18n} = useTranslation('routes');
   const colorFieldByLocation =
@@ -146,7 +146,8 @@ const Navigation = memo<Props>(({onLinkHover, location}) => {
             borderRightWidth: 2,
             borderRightColor: colorFieldByLocation.secondaryColor,
           },
-        }}>
+        }}
+        className="navigation__side-menu">
         <NavigationMenuContent
           routes={setRoutes}
           colors={colorFieldByLocation}
@@ -158,5 +159,3 @@ const Navigation = memo<Props>(({onLinkHover, location}) => {
 });
 
 Navigation.displayName = 'Navigation Component';
-
-export default Navigation;

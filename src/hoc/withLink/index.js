@@ -9,7 +9,7 @@ type InjectedProps = {|
   classNameLink: string,
 |};
 
-const withLink = <Config: any>(
+export const withLink = <Config: any>(
   WrappedComponent: React.AbstractComponent<{|...Config, ...InjectedProps|}>,
 ): React.AbstractComponent<Config> => {
   const WrapperComponent = (props: Config) => {
@@ -38,5 +38,3 @@ const withLink = <Config: any>(
 
   return WrapperComponent;
 };
-
-export default withLink;

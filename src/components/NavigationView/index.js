@@ -24,7 +24,7 @@ type ConfiguratioType = {|
 
 const RADIUS = 250;
 
-const NavigationView = memo<Props>(({className, route}) => {
+export const NavigationView = memo<Props>(({className, route}) => {
   const classNames = [
     'navigation-view',
     route ? 'isActive' : '',
@@ -176,5 +176,3 @@ const NavigationView = memo<Props>(({className, route}) => {
 });
 
 NavigationView.displayName = 'NavigationView';
-
-export default NavigationView;

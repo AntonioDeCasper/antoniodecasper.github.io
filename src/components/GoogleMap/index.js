@@ -13,7 +13,7 @@ const LOCATION = {
   lng: 83.764427,
 };
 
-const GoogleMap = ({className}: Props) => {
+export const GoogleMap = ({className}: Props) => {
   const classNames = ['google-map', className].join(' ');
 
   const [googleMapState, setGoogleMapState] = useState<any>(null);
@@ -81,5 +81,3 @@ const GoogleMap = ({className}: Props) => {
     </>
   );
 };
-
-export default GoogleMap;

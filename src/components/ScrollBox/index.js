@@ -10,38 +10,38 @@ type Props = {|
   isBottomPadding?: boolean,
 |};
 
-const ScrollBox = memo<Props>(({className, children, isBottomPadding}) => {
-  const classNames = ['scroll-box', className].join(' ');
-  const [scrollBarWidthState, setScrollBarWidthState] = useState<number>(0);
+export const ScrollBox = memo<Props>(
+  ({className, children, isBottomPadding}) => {
+    const classNames = ['scroll-box', className].join(' ');
+    const [scrollBarWidthState, setScrollBarWidthState] = useState<number>(0);
 
-  const scrollBoxRef = useRef<null | HTMLElement>(null);
+    const scrollBoxRef = useRef<null | HTMLElement>(null);
 
-  useEffect(() => {
-    if (scrollBoxRef.current) {
-      setScrollBarWidthState(
-        scrollBoxRef.current.offsetWidth - scrollBoxRef.current.clientWidth,
-      );
-    }
-  }, [scrollBoxRef.current]);
+    useEffect(() => {
+      if (scrollBoxRef.current) {
+        setScrollBarWidthState(
+          scrollBoxRef.current.offsetWidth - scrollBoxRef.current.clientWidth,
+        );
+      }
+    }, []);
 
-  return (
-    <div className={classNames}>
-      <div
-        style={{left: scrollBarWidthState}}
-        ref={scrollBoxRef}
-        className="scroll-box__container">
+    return (
+      <div className={classNames}>
         <div
-          style={{right: scrollBarWidthState / 2}}
-          className="scroll-box__inner-container">
-          {React.Children.toArray(children)}
+          style={{left: scrollBarWidthState}}
+          ref={scrollBoxRef}
+          className="scroll-box__container">
+          <div
+            style={{right: scrollBarWidthState / 2}}
+            className="scroll-box__inner-container">
+            {React.Children.toArray(children)}
 
-          {isBottomPadding && <div className="scroll-box__empty-container" />}
+            {isBottomPadding && <div className="scroll-box__empty-container" />}
+          </div>
         </div>
       </div>
-    </div>
-  );
-});
+    );
+  },
+);
 
 ScrollBox.displayName = 'ScrollBox';
-
-export default ScrollBox;

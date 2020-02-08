@@ -5,7 +5,7 @@ import {useTheme, useDispatch} from '../../../../context';
 import {useTranslation} from 'react-i18next';
 
 //Import COMPONENTS
-import HeaderUbuntu from '../HeaderUbuntu';
+import {HeaderUbuntu} from '../HeaderUbuntu';
 import {TextBackline, Button} from '../../../../components';
 
 //Import UTILS
@@ -34,7 +34,7 @@ const images = [
   },
 ];
 
-const ProjectDetails = memo<Props>(({className, data}) => {
+export const ProjectDetails = memo<Props>(({className, data}) => {
   const classNames = ['project-details', className].join(' ');
 
   const {primaryColor, secondaryColor, textColor} = useTheme().colors.portfolio;
@@ -122,5 +122,3 @@ const ProjectDetails = memo<Props>(({className, data}) => {
 });
 
 ProjectDetails.displayName = 'ProjectDetails';
-
-export default ProjectDetails;

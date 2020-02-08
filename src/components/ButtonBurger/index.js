@@ -11,7 +11,7 @@ type Props = {|
   state?: boolean,
 |};
 
-const ButtonBurger = memo<Props>(
+export const ButtonBurger = memo<Props>(
   ({className, color, onStateChanged, state}) => {
     const [isActiveState, setIsActiveState] = useState<boolean>(false);
     const classNames = [
@@ -51,5 +51,3 @@ const ButtonBurger = memo<Props>(
 );
 
 ButtonBurger.displayName = 'ButtonBurger';
-
-export default ButtonBurger;

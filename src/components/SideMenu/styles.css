@@ -28,6 +28,10 @@
   width: 100%;
   top: 0;
   right: 0;
+  background-color: transparent;
+}
+
+.side-menu-overlay.isActive {
   background-color: rgba(0, 0, 0, 0.6);
 }
 

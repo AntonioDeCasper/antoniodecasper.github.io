@@ -19,7 +19,7 @@ type Props = {|
   },
 |};
 
-const Input = memo<Props>(
+export const Input = memo<Props>(
   ({className, placeholder, name, type, styles, value, as}) => {
     const [focusState, setFocusState] = useState<boolean>(false);
     const classNames = [
@@ -63,5 +63,3 @@ const Input = memo<Props>(
 );
 
 Input.displayName = 'Input';
-
-export default Input;

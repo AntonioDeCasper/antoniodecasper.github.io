@@ -6,7 +6,7 @@ import './styles.css';
 
 type Props = {|className?: string, text: string|};
 
-const Ribbon = memo<Props>(({className, text}) => {
+export const Ribbon = memo<Props>(({className, text}) => {
   const classNames = ['ribbon', className].join(' ');
 
   return (
@@ -17,5 +17,3 @@ const Ribbon = memo<Props>(({className, text}) => {
 });
 
 Ribbon.displayName = 'Ribbon';
-
-export default Ribbon;

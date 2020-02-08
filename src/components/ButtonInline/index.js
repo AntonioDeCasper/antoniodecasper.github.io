@@ -14,7 +14,7 @@ type Props = {
   isActive?: boolean,
 };
 
-const ButtonInline = memo<Props>(
+export const ButtonInline = memo<Props>(
   ({
     text = 'Button',
     className,
@@ -94,5 +94,3 @@ const ButtonInline = memo<Props>(
 );
 
 ButtonInline.displayName = 'ButtonInline';
-
-export default ButtonInline;

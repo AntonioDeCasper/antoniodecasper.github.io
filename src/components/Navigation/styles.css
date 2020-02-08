@@ -27,6 +27,10 @@
   padding-right: 10px;
 }
 
+.navigation__side-menu {
+  display: none;
+}
+
 /*ANIMATIONS*/
 .navigation_delay_1 {
   animation-delay: 0.2s;
@@ -69,6 +73,10 @@
   }
 
   .navigation__burger-item {
+    display: block;
+  }
+
+  .navigation__side-menu {
     display: block;
   }
 }

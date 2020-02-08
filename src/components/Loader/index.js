@@ -7,7 +7,7 @@ import './styles.css';
 
 type Props = {|className?: string, color?: string|};
 
-const Loader = memo<Props>(({className, color}) => {
+export const Loader = memo<Props>(({className, color}) => {
   const classNames = ['loader', className].join(' ');
   const {pageTransition} = useTheme().variables;
 
@@ -54,5 +54,3 @@ const Loader = memo<Props>(({className, color}) => {
 });
 
 Loader.displayName = 'Loader';
-
-export default Loader;

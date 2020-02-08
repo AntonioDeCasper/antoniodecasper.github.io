@@ -15,7 +15,7 @@ type Props = {|
   href: string,
 |};
 
-const Link = memo<Props>(
+export const Link = memo<Props>(
   ({
     className,
     children,
@@ -56,5 +56,3 @@ const Link = memo<Props>(
 );
 
 Link.displayName = 'Link';
-
-export default Link;

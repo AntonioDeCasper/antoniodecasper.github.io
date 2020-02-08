@@ -22,7 +22,7 @@ type Props = {|
   name?: string | number,
 |};
 
-const Button = memo<Props>(
+export const Button = memo<Props>(
   ({
     className,
     text,
@@ -163,5 +163,3 @@ const Button = memo<Props>(
 );
 
 Button.displayName = 'Button';
-
-export default Button;

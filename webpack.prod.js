@@ -5,7 +5,7 @@ const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const SRC_DIR = path.resolve(__dirname, 'src');
 const CUSTOM_LIBRARIES = [
@@ -13,7 +13,6 @@ const CUSTOM_LIBRARIES = [
   path.resolve(__dirname, 'node_modules/animate.css/'), //animate.css
   path.resolve(__dirname, 'node_modules/normalize.css/'), //normalize.css
 ];
-const PRELOADER = path.resolve(__dirname, 'src/preloader.css');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -36,16 +35,15 @@ module.exports = merge(common, {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
-      // chunkFilename: '[id].[hash].css',
     }),
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: PRELOADER,
-    //     // transform: function(fileContent, path) {
-    //     //   console.log('fileContent: ', fileContent);
-    //     //   console.log('path: ', path);
-    //     // },
-    //   },
-    // ]),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        '*.js',
+        '*.js.map',
+        '*.html',
+        '*.css',
+        '*.txt',
+      ],
+    }),
   ],
 });

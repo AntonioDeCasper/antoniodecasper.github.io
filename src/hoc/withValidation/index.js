@@ -10,7 +10,7 @@ type InjectedProps = {|
   className?: string,
 |};
 
-const withValidation = <Config: any>(
+export const withValidation = <Config: any>(
   WrappedComponent: React.AbstractComponent<{|...Config, ...InjectedProps|}>,
 ): React.AbstractComponent<Config> => {
   const WrapperComponent = (props: Config) => {
@@ -44,5 +44,3 @@ const withValidation = <Config: any>(
 
   return WrapperComponent;
 };
-
-export default withValidation;

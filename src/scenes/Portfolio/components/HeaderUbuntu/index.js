@@ -6,7 +6,7 @@ import './styles.css';
 
 type Props = {|className?: string, label?: string|};
 
-const HeaderUbuntu = memo<Props>(({className, label}) => {
+export const HeaderUbuntu = memo<Props>(({className, label}) => {
   const classNames = ['header-ubuntu', className].join(' ');
 
   return (
@@ -19,5 +19,3 @@ const HeaderUbuntu = memo<Props>(({className, label}) => {
 });
 
 HeaderUbuntu.displayName = 'HeaderUbuntu';
-
-export default HeaderUbuntu;

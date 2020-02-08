@@ -14,7 +14,7 @@ type Props = {|
   overlay?: boolean,
 |};
 
-const SideMenu = memo<Props>(
+export const SideMenu = memo<Props>(
   ({
     className,
     style,
@@ -70,7 +70,7 @@ const SideMenu = memo<Props>(
           <div
             onClick={handleCloseMenu}
             style={{right: isActive ? '0' : '-100%'}}
-            className="side-menu-overlay"></div>
+            className={`side-menu-overlay ${isActive ? 'isActive' : ''}`}></div>
         )}
       </>
     );
@@ -78,5 +78,3 @@ const SideMenu = memo<Props>(
 );
 
 SideMenu.displayName = 'SideMenu';
-
-export default SideMenu;

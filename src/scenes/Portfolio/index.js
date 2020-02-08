@@ -1,12 +1,17 @@
 //@flow
 import React, {useState, useEffect, useRef, useCallback} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useTheme, useGlobalState, useDispatch} from '../../context';
+import {
+  useTheme,
+  useGlobalState,
+  useDispatch,
+  useWindowDimension,
+} from '../../context';
 
 //Import COMPONENTS
 import {Button, ScrollBox, SideMenu, TextBackline} from '../../components';
-import ProjectBox from './components/ProjectBox';
-import ProjectDetails from './components/ProjectDetails';
+import {ProjectBox} from './components/ProjectBox';
+import {ProjectDetails} from './components/ProjectDetails';
 
 //Import CONSTANTS
 import {TAGS, PROJECTS} from './constants';
@@ -30,6 +35,7 @@ const PortfolioPage = ({className}: Props) => {
   const {t} = useTranslation('portfolio');
   const {projectMenuState} = useGlobalState();
   const {openProjectMenu, closeProjectMenu} = useDispatch();
+  const {width} = useWindowDimension();
 
   const [isRenderState, setIsRenderState] = useState<boolean>(false);
   const [toggledTagsState, setToggledTagsState] = useState<
@@ -211,7 +217,8 @@ const PortfolioPage = ({className}: Props) => {
 
                   <div
                     style={{
-                      backgroundColor: primaryColor,
+                      backgroundColor:
+                        width >= 480 ? 'transparent' : primaryColor,
                       borderColor: secondaryColor,
                       top: filterMenuState.state
                         ? filterMenuState.offset
