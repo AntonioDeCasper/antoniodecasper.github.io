@@ -2,6 +2,7 @@
 import * as React from 'react';
 import {useTheme} from '../../context';
 import {useTranslation} from 'react-i18next';
+import {Helmet} from 'react-helmet-async';
 
 //Import ICONS
 import {GoPerson} from 'react-icons/go';
@@ -94,6 +95,11 @@ const HomePage = React.memo<Props>(({className}) => {
 
   return (
     <div style={styles.pageHome} className={classNames}>
+      <Helmet>
+        <meta name="description" content={t('Description')} />
+        <title>{t('Title')}</title>
+      </Helmet>
+
       {isRenderState && (
         <div className="page-content__container">
           <div className="page-home__container"></div>

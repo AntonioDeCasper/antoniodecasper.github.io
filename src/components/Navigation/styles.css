@@ -9,6 +9,7 @@
 
 .navigation__item {
   display: flex;
+  align-items: center;
 }
 
 .navigation__link {
@@ -48,12 +49,11 @@
   animation-delay: 1s;
 }
 
-/* MEDIA */
+/* MEDIA QUERIES */
 
 @media only screen and (max-width: 992px) {
-  .navigation__link {
-    margin-right: 30px;
-    font-size: 14px;
+  .navigation__link + .navigation__link {
+    margin-left: 20px;
   }
 
   .navigation__lng-btn {
@@ -63,8 +63,7 @@
 
 @media only screen and (max-width: 768px) {
   .navigation {
-    justify-content: flex-end;
-    padding: 14px 15px;
+    padding: 14px 30px;
     border-bottom: 2px solid transparent;
   }
 
@@ -73,10 +72,19 @@
   }
 
   .navigation__burger-item {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
   }
 
   .navigation__side-menu {
     display: block;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .navigation {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }

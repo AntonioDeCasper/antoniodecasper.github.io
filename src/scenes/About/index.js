@@ -1,5 +1,6 @@
 //@flow
 import React, {memo, useEffect, useState, useMemo} from 'react';
+import {Helmet} from 'react-helmet-async';
 import {useTranslation} from 'react-i18next';
 import {useTheme} from '../../context';
 
@@ -113,6 +114,11 @@ const AboutPage = memo<Props>(({className}) => {
       style={styles.pageAbout}
       className={classNames}
       onWheel={handleScroll}>
+      <Helmet>
+        <meta name="description" content={t('Description')} />
+        <title>{t('Title')}</title>
+      </Helmet>
+
       {isRenderState && (
         <div className="page-about">
           <div className="page-content__container page-about__tab">

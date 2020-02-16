@@ -15,6 +15,7 @@ import {ButtonBurger} from './ButtonBurger';
 import {TextBackline} from './TextBackline';
 import {Loader} from './Loader';
 import {LoaderOrbit} from './LoaderOrbit';
+import {Logo} from './Logo';
 
 export {
   NavigationView,
@@ -34,4 +35,5 @@ export {
   TextBackline,
   Loader,
   LoaderOrbit,
+  Logo,
 };

@@ -6,6 +6,7 @@ import React, {
   createContext,
   useReducer,
 } from 'react';
+import {HelmetProvider} from 'react-helmet-async';
 import {initialGlobalState, reducer} from './reducers';
 
 //Import TYPES
@@ -126,7 +127,9 @@ const useGlobalState = () => useContext(GlobalStateContext);
 const Provider = ({children}: Props) => (
   <ThemeContext.Provider value={theme}>
     <WindowDimensionProvider>
-      <GlobalStateProvider>{children}</GlobalStateProvider>
+      <GlobalStateProvider>
+        <HelmetProvider>{children}</HelmetProvider>
+      </GlobalStateProvider>
     </WindowDimensionProvider>
   </ThemeContext.Provider>
 );

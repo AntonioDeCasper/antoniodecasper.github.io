@@ -6,7 +6,7 @@ import {useTheme} from '../../context';
 //Import COMPONENTS
 import {NavigationLink} from './components/NavigationLink';
 import {NavigationMenuContent} from './components/NavigationMenuContent';
-import {ButtonBurger, ButtonInline, SideMenu} from '../';
+import {ButtonBurger, ButtonInline, SideMenu, Logo} from '../';
 
 //Import STYLES
 import './styles.css';
@@ -79,6 +79,8 @@ export const Navigation = memo<Props>(({onLinkHover, location}) => {
         }}
         className="navigation">
         <div className="navigation__item navigation__burger-item">
+          <Logo textColor={colorFieldByLocation.textColor} />
+
           <ButtonBurger
             onStateChanged={handleChangeMenuState}
             color={colorFieldByLocation.secondaryColor}

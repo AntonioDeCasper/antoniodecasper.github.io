@@ -7,6 +7,7 @@ import {
   useDispatch,
   useWindowDimension,
 } from '../../context';
+import {Helmet} from 'react-helmet-async';
 
 //Import COMPONENTS
 import {Button, ScrollBox, SideMenu, TextBackline} from '../../components';
@@ -156,6 +157,11 @@ const PortfolioPage = ({className}: Props) => {
           : {}),
       }}
       className={classNames}>
+      <Helmet>
+        <meta name="description" content={t('Description')} />
+        <title>{t('Title')}</title>
+      </Helmet>
+
       <SideMenu
         style={{
           mainContainer: {
@@ -198,7 +204,7 @@ const PortfolioPage = ({className}: Props) => {
 
               <div className="paragraph">
                 <div className="text-common animated bounceInLeft">
-                  {t('Description')}
+                  {t('ProjectsDescription')}
                 </div>
               </div>
 

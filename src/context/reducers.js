@@ -2,17 +2,17 @@
 import {useContext} from 'react';
 import {GlobalDispatchContext} from './providers';
 
-type Reducer = (
-  InitialGlobalState,
-  action: {[string]: any},
-) => InitialGlobalState;
-
 export type InitialGlobalState = {
   +projectMenuState: {
     +isActive: boolean,
     +data: ?{[string]: any},
   },
 };
+
+type Reducer = (
+  InitialGlobalState,
+  action: {[string]: any},
+) => InitialGlobalState;
 
 //Global State
 const initialGlobalState: InitialGlobalState = {

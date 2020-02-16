@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackDeployPlugin = require('html-webpack-deploy-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 // Config directories
 const ROOT_DIR = path.resolve(__dirname);
@@ -60,12 +61,28 @@ module.exports = {
       template: ROOT_DIR + '/index.html',
       chunksSortMode: 'none',
     }),
+
     new HtmlWebpackDeployPlugin({
       assets: {
         copy: [{from: 'src/preloader.css', to: ''}],
         links: ['preloader.css'],
       },
       useAssetsPath: false,
+    }),
+
+    new FaviconsWebpackPlugin({
+      logo: './src/assets/favicons/android-chrome-512x512.png',
+      cache: true,
+      inject: true,
+      favicons: {
+        appName: 'GRANT',
+        appDescription:
+          "This is my personal portfolio application. Don't be shy and explore all information about me and my skills as Front-end developer.",
+        developerName: 'Anton Gribenkov',
+        developerURL: null,
+        background: '#212121',
+        theme_color: '#f4c02d',
+      },
     }),
   ],
 };

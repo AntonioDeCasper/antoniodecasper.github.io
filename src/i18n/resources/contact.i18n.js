@@ -1,6 +1,10 @@
 //@flow
 export const contact = {
   en: {
+    Title: 'Contacts - Anton Gribenkov',
+    Description:
+      'Here you can discover my social accounts, text me in Telegram/Skype or simple send me email.',
+
     Header: "I'm always open to a discussion of partnership.",
     Email: 'Email',
     Telegram: 'Telegram',
@@ -13,6 +17,10 @@ export const contact = {
     SubmitText: 'Send message',
   },
   ru: {
+    Title: 'Контакты Антона Грибенькова',
+    Description:
+      'Тут вы можете посмотреть мои профили в социальных сетях, написать мне в Telegram или Skype, а также отправить электронное письмо.',
+
     Header: 'Я всегда открыт для сотрудничества.',
     Email: 'Почта',
 

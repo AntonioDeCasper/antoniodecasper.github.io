@@ -1,0 +1,24 @@
+.logo {
+  font-family: 'Voltaire-Regular';
+  text-transform: uppercase;
+  font-size: 24px;
+  position: relative;
+  color: #fff;
+  line-height: 30px;
+  padding-right: 5px;
+  transition: color linear 0.5s;
+}
+
+.logo:before {
+  content: 'GR';
+  padding: 0 10px;
+  background-color: #d84315;
+  color: #fff;
+  margin-right: 5px;
+}
+
+/* FONTS */
+@font-face {
+  font-family: 'Voltaire-Regular';
+  src: url('../../assets/fonts/Voltaire-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+}

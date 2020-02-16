@@ -1,5 +1,6 @@
 //@flow
 import React, {memo, useState, useEffect, useRef} from 'react';
+import {useWindowDimension} from '../../context/providers';
 
 // Import STYLES
 import './styles.css';
@@ -14,6 +15,7 @@ export const ScrollBox = memo<Props>(
   ({className, children, isBottomPadding}) => {
     const classNames = ['scroll-box', className].join(' ');
     const [scrollBarWidthState, setScrollBarWidthState] = useState<number>(0);
+    const {width} = useWindowDimension();
 
     const scrollBoxRef = useRef<null | HTMLElement>(null);
 
@@ -23,7 +25,7 @@ export const ScrollBox = memo<Props>(
           scrollBoxRef.current.offsetWidth - scrollBoxRef.current.clientWidth,
         );
       }
-    }, []);
+    }, [width]);
 
     return (
       <div className={classNames}>

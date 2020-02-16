@@ -24,7 +24,7 @@ import {
 //Import SCENES
 const HomePage = React.lazy(() => import('./Home'));
 const AboutPage = React.lazy(() => import('./About'));
-const ContactPage = React.lazy(() => import('./Contact/index'));
+const ContactPage = React.lazy(() => import('./Contact'));
 const PortfolioPage = React.lazy(() => import('./Portfolio'));
 
 //Import STYLES

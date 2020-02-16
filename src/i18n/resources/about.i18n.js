@@ -1,6 +1,9 @@
 // @flow
 export const about = {
   en: {
+    Title: 'About Anton Gribenkov - Front-end Developer',
+    Description: "See who I'm and what can i do as Front-end developer",
+
     Me: 'Me',
     header: 'What can i say... i like to code.',
 
@@ -26,8 +29,11 @@ export const about = {
     Skills: 'My skills',
   },
   ru: {
+    Title: 'Антон Грибеньков - Front-end Developer',
+    Description: 'Узнайте кто я, откуда и что умею как Fron-end разработчик.',
+
     Me: 'Me',
-    header: 'Что я могу сказать... я люблю кодить :)',
+    header: 'Что я могу рассказать о себе... я люблю кодить :)',
 
     FirstName: 'Имя:',
     FirstNameVal: 'Антон',
