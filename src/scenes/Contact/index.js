@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {Formik} from 'formik';
 import {useTranslation} from 'react-i18next';
 import {useTheme, useWindowDimension} from '../../context';
+import {Helmet} from 'react-helmet-async';
 
 //Import COMPONENTS
 import {Link, Button, TextBackline} from '../../components';
@@ -95,6 +96,11 @@ const ContactPage = ({className}: Props) => {
 
   return (
     <div style={styles.pageContact} className={classNames}>
+      <Helmet>
+        <meta name="description" content={t('Description')} />
+        <title>{t('Title')}</title>
+      </Helmet>
+
       {isRenderState && (
         <div className="page-content__container page-contact__container">
           <div className="header header_type_h1 header_tt_uppercase header_fw_bold animated fadeIn">
