@@ -1,0 +1,14 @@
+{
+  "version": "0.10.1",
+  "name": "GRANT",
+  "description": "This is my personal portfolio application. Don't be shy and explore all information about me and my skills as Front-end developer.",
+  "icons": {
+    "60": "/assets/firefox_app_60x60.png",
+    "128": "/assets/firefox_app_128x128.png",
+    "512": "/assets/firefox_app_512x512.png"
+  },
+  "developer": {
+    "name": "Anton Gribenkov",
+    "url": null
+  }
+}
