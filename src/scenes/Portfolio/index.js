@@ -232,7 +232,7 @@ const PortfolioPage = ({className}: Props) => {
                     }}
                     className={`page-portfolio__tags-filter-wrapper`}>
                     <div className="paragraph page-portfolio__tag-header">
-                      <span className="text-common text-common_fz_medium text-common_tt_uppercase">
+                      <span className="text-common text-common_fz_m text-common_tt_uppercase">
                         Filters:
                       </span>
                     </div>

@@ -16,6 +16,10 @@ import {TextBackline} from './TextBackline';
 import {Loader} from './Loader';
 import {LoaderOrbit} from './LoaderOrbit';
 import {Logo} from './Logo';
+import ProgressBar from './ProgressBar';
+import Title from './Title';
+import ProgressLine from './ProgressLine';
+import {ProgressStep} from './ProgressLine';
 
 export {
   NavigationView,
@@ -36,4 +40,8 @@ export {
   Loader,
   LoaderOrbit,
   Logo,
+  ProgressBar,
+  Title,
+  ProgressLine,
+  ProgressStep,
 };

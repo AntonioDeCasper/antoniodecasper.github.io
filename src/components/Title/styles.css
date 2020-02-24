@@ -1,0 +1,35 @@
+.title {
+  margin: 0;
+}
+
+.title_type_h1 {
+  font-size: 56px;
+}
+
+.title_type_h2 {
+  font-size: 42px;
+}
+
+.title_type_h3 {
+  font-size: 32px;
+}
+
+.title_type_h4 {
+  font-size: 26px;
+}
+
+.title_tt_uppercase {
+  text-transform: uppercase;
+}
+
+.title_decoration_underline {
+  text-decoration: underline;
+}
+
+.title_decoration_line-through {
+  text-decoration: line-through;
+}
+
+.title_style_italic {
+  font-style: italic;
+}

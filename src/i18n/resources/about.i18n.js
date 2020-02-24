@@ -26,7 +26,7 @@ export const about = {
     Skype: 'Skype:',
     SkypeVal: 'Anton Gribenkov',
 
-    Skills: 'My skills',
+    Skills: 'My advantages',
   },
   ru: {
     Title: 'Антон Грибеньков - Front-end Developer',
@@ -54,6 +54,6 @@ export const about = {
     Skype: 'Скайп:',
     SkypeVal: 'Anton Gribenkov',
 
-    Skills: 'Мои навыки',
+    Skills: 'Мои преимущества',
   },
 };

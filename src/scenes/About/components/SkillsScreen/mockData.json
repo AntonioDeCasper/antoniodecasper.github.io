@@ -1,0 +1,73 @@
+{
+  "progressBars": [
+    {
+      "index": "row0",
+      "value": [
+        {
+          "index": "0",
+          "name": "HTML",
+          "value": 85,
+          "icon": {"name": "html5Icon", "size": 32, "color": "#dd3d1d"}
+        },
+        {
+          "index": "1",
+          "name": "CSS",
+          "value": 85,
+          "icon": {"name": "css3Icon", "size": 32, "color": "#54b2e9"}
+        },
+        {
+          "index": "2",
+          "name": "JavaScript",
+          "value": 75,
+          "icon": {"name": "javascriptIcon", "size": 32, "color": "#ebba25"}
+        }
+      ]
+    },
+    {
+      "index": "row1",
+      "value": [
+        {
+          "index": "3",
+          "name": "jQuery",
+          "value": 75,
+          "icon": {"name": "jqueryIcon", "size": 32, "color": "#386fb0"}
+        },
+        {
+          "index": "4",
+          "name": "React",
+          "value": 90,
+          "icon": {"name": "reactIcon", "size": 32, "color": "#61d4f4"}
+        },
+        {
+          "index": "5",
+          "name": "React Native",
+          "value": 65,
+          "icon": {"name": "reactIcon", "size": 32, "color": "#61d4f4"}
+        }
+      ]
+    },
+    {
+      "index": "row2",
+      "value": [
+        {
+          "index": "6",
+          "name": "NodeJS (Express)",
+          "value": 55,
+          "icon": {"name": "nodeDotJs", "size": 32, "color": "#679d62"}
+        },
+        {
+          "index": "7",
+          "name": "MongoDB",
+          "value": 45,
+          "icon": {"name": "mongodbIcon", "size": 32, "color": "#44aa52"}
+        },
+        {
+          "index": "8",
+          "name": "Electron",
+          "value": 55,
+          "icon": {"name": "electronIcon", "size": 32, "color": "#74b0be"}
+        }
+      ]
+    }
+  ]
+}

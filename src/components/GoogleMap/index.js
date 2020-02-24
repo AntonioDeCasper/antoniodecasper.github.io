@@ -38,12 +38,6 @@ export const GoogleMap = ({className}: Props) => {
         backgroundColor: 'none',
       });
 
-    fetch(
-      'https://maps.googleapis.com/maps/api/js?v=weekly&key=${GOOGLE_API_KEY}',
-    ).then(response => {
-      console.log('Google response: ', response);
-    });
-
     // Check if we already append google script at the document body
     if (
       documentScriptsList.filter(
@@ -77,7 +71,7 @@ export const GoogleMap = ({className}: Props) => {
 
   return (
     <>
-      <div ref={googleMapRef} className={classNames}></div>
+      <div ref={googleMapRef} className={classNames} />
     </>
   );
 };

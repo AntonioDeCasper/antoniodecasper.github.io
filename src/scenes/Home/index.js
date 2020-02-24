@@ -105,7 +105,7 @@ const HomePage = React.memo<Props>(({className}) => {
           <div className="page-home__container"></div>
           <div className="page-home__container page-home__container-double">
             <div className="page-home__hello-box">
-              <div className="animated bounceInDown text-common text-common_tt_uppercase text-common_fz_medium">
+              <div className="animated bounceInDown text-common text-common_tt_uppercase text-common_fz_m">
                 {t('Welcome')}
               </div>
 

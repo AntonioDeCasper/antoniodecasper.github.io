@@ -1,6 +1,6 @@
 {
   "name": "myfreelancesite",
-  "version": "0.10.2",
+  "version": "0.11.4",
   "description": "My personal SPA by Anton Gribenkov antongribenkov@gmail.com",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,9 @@
   "author": "Gribenkov Anton",
   "license": "ISC",
   "dependencies": {
+    "@iconify/icons-ant-design": "^1.0.6",
+    "@iconify/icons-simple-icons": "^1.0.23",
+    "@iconify/react": "^1.1.1",
     "animate.css": "^3.7.2",
     "formik": "^2.1.2",
     "i18next": "^19.0.2",
@@ -36,6 +39,7 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.6.3",
+    "@iconify/icons-logos": "^1.0.9",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",

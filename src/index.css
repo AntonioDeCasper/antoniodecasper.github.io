@@ -124,12 +124,28 @@ p {
   display: block;
 }
 
-.text-common_fz_small {
+.text-common_fz_xxs {
+  font-size: 1rem;
+}
+
+.text-common_fz_xs {
+  font-size: 1.2rem;
+}
+
+.text-common_fz_s {
   font-size: 1.4rem;
 }
 
-.text-common_fz_medium {
+.text-common_fz_m {
   font-size: 2rem;
+}
+
+.text-common_fz_l {
+  font-size: 2.2rem;
+}
+
+.text-common_fz_xl {
+  font-size: 2.4rem;
 }
 
 .text-common_weight_bold {
