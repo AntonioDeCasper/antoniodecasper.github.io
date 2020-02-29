@@ -1,10 +1,10 @@
 /* @flow */
 import React, {memo, useState, useEffect, useCallback, useMemo} from 'react';
+import {useHistory} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {useTheme} from '../../context';
 
 //Import COMPONENTS
-import {NavigationLink} from './components/NavigationLink';
 import {NavigationMenuContent} from './components/NavigationMenuContent';
 import {ButtonBurger, ButtonInline, SideMenu, Logo} from '../';
 
@@ -20,6 +20,7 @@ export const Navigation = memo<Props>(({onLinkHover, location}) => {
     colors[
       location.pathname.split('/')[1] ? location.pathname.split('/')[1] : 'home'
     ];
+  const history = useHistory();
 
   const [languageState, setLanguageState] = useState<string>(i18n.language);
   const [isMenuActiveState, setIsMenuActiveState] = useState<boolean>(false);
@@ -44,9 +45,9 @@ export const Navigation = memo<Props>(({onLinkHover, location}) => {
     [onLinkHover],
   );
 
-  const handleChangeMenuState = state => {
+  const handleChangeMenuState = useCallback(state => {
     setIsMenuActiveState(state);
-  };
+  }, []);
 
   const setRoutes = useMemo(() => {
     return [
@@ -69,6 +70,10 @@ export const Navigation = memo<Props>(({onLinkHover, location}) => {
     ];
   }, [t]);
 
+  const handleRouteOnClick = route => {
+    history.push(route.path);
+  };
+
   console.log('%cRender Navigation', 'color: green');
 
   return (
@@ -88,28 +93,26 @@ export const Navigation = memo<Props>(({onLinkHover, location}) => {
           />
         </div>
 
-        <div className="navigation__item">
+        <nav className="navigation__item">
           {React.Children.toArray(
             setRoutes.map((route, i) => (
               /* eslint react/jsx-key: "off" */
-              <NavigationLink
+              <ButtonInline
                 style={{
                   color: colorFieldByLocation.textColor,
                   activeColor: colorFieldByLocation.secondaryColor,
                   hoverColor: colorFieldByLocation.secondaryColor,
                 }}
-                exact
-                to={route.path}
                 text={route.name}
-                activeClassName="isActive"
+                isActive={location.pathname === route.path}
+                className={`btn-inline_active_double animated zoomIn navigation__link navigation_delay_${i}`}
                 onMouseEnter={() => handleLinkHover(route.path)}
                 onMouseLeave={() => handleLinkHover(null)}
-                className={`btn-inline_active_double`}
-                classNameLink={`animated zoomIn navigation__link navigation_delay_${i}`}
+                onClick={() => handleRouteOnClick(route)}
               />
             )),
           )}
-        </div>
+        </nav>
 
         <div style={{}} className="navigation__item">
           <ButtonInline
@@ -154,6 +157,7 @@ export const Navigation = memo<Props>(({onLinkHover, location}) => {
           routes={setRoutes}
           colors={colorFieldByLocation}
           onMenuClose={handleChangeMenuState}
+          onLinkClick={handleRouteOnClick}
         />
       </SideMenu>
     </>

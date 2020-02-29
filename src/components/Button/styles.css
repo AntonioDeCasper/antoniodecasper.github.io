@@ -1,5 +1,7 @@
 .button {
-  display: inline-block;
+  position: relative;
+  display: flex;
+  align-items: center;
   background-color: transparent;
   color: #fff;
   padding: 10px 20px;
@@ -8,7 +10,6 @@
   transition: transform linear 0.1s, color linear 0.2s, font-size linear 0.1s,
     border-color linear 0.3s, background-color linear 0.3s;
   user-select: none;
-  position: relative;
   box-sizing: border-box;
   border: 2px solid #fff;
   overflow: hidden;
@@ -36,15 +37,16 @@
 }
 
 .button__text {
-  display: inline-block;
   vertical-align: middle;
   position: relative;
   z-index: 1;
 }
 
 .button__icon {
-  position: absolute;
+  position: relative;
   z-index: 1;
+  margin-right: 10px;
+  line-height: 0;
 }
 
 .button__circle {
@@ -76,6 +78,8 @@
   color: #ffffff;
   letter-spacing: 1px;
   border: none;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .button_theme_sun-inverted {

@@ -34,6 +34,8 @@
 }
 
 .page-home__btn-container {
+  display: flex;
+  align-items: center;
   margin-top: 20px;
 }
 
@@ -43,24 +45,8 @@
 
 .page-home__about-btn,
 .page-home__portfolio-btn {
-  padding: 20px 36px 20px 48px;
+  padding: 18px 36px 18px 30px;
   font-size: 16px;
-}
-
-.page-home__portfolio-btn {
-  padding: 22px 36px 22px 54px;
-}
-
-.page-home__about-icon,
-.page-home__portfolio-icon {
-  left: 20px;
-  top: 50%;
-  margin-top: -9px;
-}
-
-.page-home__portfolio-icon {
-  margin-top: -11px;
-  line-height: 0px;
 }
 
 /* ANIMATIONS */
@@ -74,7 +60,7 @@
   }
 
   100% {
-    transform: scale(1) translate(0px 0px);
+    transform: scale(1) translate(0px);
   }
 }
 

@@ -1,0 +1,10 @@
+.progresser-connector {
+  flex: 1;
+  border-top: 4px solid #2196f3;
+  position: relative;
+  z-index: -1;
+}
+
+.progresser-connector_type_dotted {
+  border-top-style: dotted;
+}

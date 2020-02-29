@@ -1,14 +1,14 @@
-.progress-line {
+.progresser {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
 }
 
-.progress-line__line {
+.progresser__line {
   position: absolute;
   width: 100%;
   height: 4px;
-  background-color: #4a148c;
+  background-color: #2196f3;
   z-index: -1;
 }

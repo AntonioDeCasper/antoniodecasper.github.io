@@ -150,12 +150,12 @@ export const Button = memo<Props>(
         onClick={handleClick}
         onMouseEnter={e => handleMouseHover(e, true)}
         onMouseLeave={e => handleMouseHover(e, false)}>
-        {icon && <div className={iconClassNames}>{icon}</div>}
+        {icon && <span className={iconClassNames}>{icon}</span>}
 
         <span className="button__text">{text}</span>
 
         {animationType === 'position-aware' && (
-          <div style={styles.animationCircle} className="button__circle"></div>
+          <span style={styles.animationCircle} className="button__circle" />
         )}
       </button>
     );

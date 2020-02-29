@@ -70,12 +70,10 @@ export const App = () => {
   );
 
   const handleOnEnterAnimation = () => {
-    console.log('handleOnEnterAnimation');
     setTransitionState(true);
   };
 
   const handleOnExitedAnimation = () => {
-    console.log('handleOnExitedAnimation');
     setTransitionState(false);
   };
 

@@ -30,8 +30,7 @@ import {progressBars} from './mockData.json';
 import {
   TextBackline,
   ProgressBar,
-  ProgressLine,
-  ProgressStep,
+  Progresser,
   Title,
 } from '../../../../components';
 
@@ -206,42 +205,53 @@ const SkillsScreen = memo<Props>(({className, isActive}) => {
         ))}
       </div>
 
-      {/* <Title type="h4" uppercase className="skills-screen__progress-header">
+      <Title type="h4" uppercase className="skills-screen__progress-header">
         Progress
       </Title>
 
       <div className="skills-screen__progress-container">
-        <ProgressLine className="skills-screen__progress-line">
-          <ProgressStep
+        <Progresser
+          activeId={['s2015', 'a2017']}
+          lineColor={secondaryColor}
+          className="skills-screen__progress-line">
+          <Progresser.Step
+            id="s2015"
             description={
-              <span className="text-common text-common_fz_s">Fleelance</span>
+              <span className="text-common text-common_fz_s text-common_weight_bold text-common_tt_uppercase">
+                Fleelance
+              </span>
             }
             size={100}
-            color={secondaryColor}>
+            colors={{
+              circleColor: secondaryColor,
+              innerColor: secondaryColor,
+              hoverColor: '#d84315',
+            }}>
             <span className="text-common text-common_fz_xxs text-common_weight_bold text-common_tt_uppercase">
               spring
             </span>
             <span className="text-common text-common_weight_bold text-common_fz_l">
               2015
             </span>
-          </ProgressStep>
+          </Progresser.Step>
 
-          <ProgressStep
+          <Progresser.Step
+            id="a2017"
             description={
               <span className="text-common text-common_fz_s">Teleofis</span>
             }
             outerCircleBottom
             size={100}
-            color={secondaryColor}>
+            colors={{circleColor: secondaryColor, innerColor: secondaryColor}}>
             <span className="text-common text-common_fz_xxs text-common_weight_bold text-common_tt_uppercase">
               autumn
             </span>
             <span className="text-common text-common_weight_bold text-common_fz_l">
               2017
             </span>
-          </ProgressStep>
+          </Progresser.Step>
 
-          <ProgressStep
+          <Progresser.Step
             description={
               <span className="text-common text-common_fz_s">Teleofis</span>
             }
@@ -253,9 +263,9 @@ const SkillsScreen = memo<Props>(({className, isActive}) => {
             <span className="text-common text-common_weight_bold text-common_fz_l">
               2018
             </span>
-          </ProgressStep>
+          </Progresser.Step>
 
-          <ProgressStep
+          <Progresser.Step
             description={
               <span className="text-common text-common_fz_s">Teleofis</span>
             }
@@ -268,9 +278,9 @@ const SkillsScreen = memo<Props>(({className, isActive}) => {
             <span className="text-common text-common_weight_bold text-common_fz_l">
               2019
             </span>
-          </ProgressStep>
-        </ProgressLine>
-      </div> */}
+          </Progresser.Step>
+        </Progresser>
+      </div>
     </div>
   );
 });
