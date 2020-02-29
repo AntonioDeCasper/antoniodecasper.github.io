@@ -21,7 +21,7 @@ const AboutPage = memo<Props>(({className}) => {
   const {pageTransition} = useTheme().variables;
 
   const [isRenderState, setIsRenderState] = useState<boolean>(false);
-  const [activeTabIndexState, setActiveTabIndexState] = useState<number>(1);
+  const [activeTabIndexState, setActiveTabIndexState] = useState<number>(0);
 
   const styles = {
     pageAbout: {
