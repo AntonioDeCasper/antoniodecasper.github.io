@@ -82,6 +82,9 @@ module.exports = {
         developerURL: null,
         background: '#212121',
         theme_color: '#f4c02d',
+        icons: {
+          appleStartup: false,
+        },
       },
     }),
   ],
